@@ -52,7 +52,7 @@ class CalendarFragment :
 //        if (!firstTime) {
 //            return
 //        }
-        firstTime = false
+//        firstTime = false
         val daysOfWeek = DayOfWeek.values()
         viewBD.cvMonth.setup(
             currentMonth.minusYears(1500),
@@ -121,7 +121,13 @@ class CalendarFragment :
 
                     today -> {
                         textView.setTextColorRes(R.color.pri_4)
-                        bgDay.setBackgroundResource(R.color.transparent)
+                        bgDay.setBackgroundResource(R.drawable.bg_boder_pri_2)
+
+                        if(firstTime){
+                            viewBD.viewAmLich.initData(today)
+                            viewBD.layoutTitle.tvActivities.text = viewModel.getTetAmLichName(today)
+                        }
+                        firstTime = false
                     }
                     else -> {
                         bgDay.setBackgroundResource(R.color.transparent)
