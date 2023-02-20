@@ -13,11 +13,11 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-    namespace 'com.jarvis.moviedb'
+    namespace 'com.jarvis.amlich'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.jarvis.moviedb"
+        applicationId "com.jarvis.amlich"
         minSdk 28
         targetSdk 33
         versionCode 1
@@ -47,35 +47,35 @@ android {
     productFlavors {
         develop {
             dimension "env"
-            applicationId "com.jarvis.moviedb.dev"
+            applicationId "com.jarvis.amlich.dev"
             buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
             buildConfigField "String", "SMALL_IMAGE_URL", "\"https://image.tmdb.org/t/p/w300\""
             buildConfigField "String", "LARGE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\""
             buildConfigField "String", "ORIGINAL_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\""
             buildConfigField "String", "TMBD_API_KEY", "\"2cdf3a5c7cf412421485f89ace91e373\""
-            resValue "string", "app_name", "MovieDB DEV"
+            resValue "string", "app_name", "Âm Lịch DEV"
         }
 
         staging {
             dimension "env"
-            applicationId "com.jarvis.moviedb"
+            applicationId "com.jarvis.amlich"
             buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/\""
             buildConfigField "String", "SMALL_IMAGE_URL", "\"https://image.tmdb.org/t/p/w300\""
             buildConfigField "String", "LARGE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\""
             buildConfigField "String", "ORIGINAL_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\""
             buildConfigField "String", "TMBD_API_KEY", "\"2cdf3a5c7cf412421485f89ace91e373\""
-            resValue "string", "app_name", "MovieDB STG"
+            resValue "string", "app_name", "Âm Lịch STG"
         }
 
         product {
             dimension "env"
-            applicationId "com.jarvis.moviedb"
+            applicationId "com.jarvis.amlich"
             buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/\""
             buildConfigField "String", "SMALL_IMAGE_URL", "\"https://image.tmdb.org/t/p/w300\""
             buildConfigField "String", "LARGE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\""
             buildConfigField "String", "ORIGINAL_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\""
             buildConfigField "String", "TMBD_API_KEY", "\"2cdf3a5c7cf412421485f89ace91e373\""
-            resValue "string", "app_name", "MovieDB"
+            resValue "string", "app_name", "Âm Lịch"
         }
     }
 

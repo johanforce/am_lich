@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.jarvis.amlich.common.preferences
 
 import android.content.Context
@@ -8,7 +10,7 @@ import com.jarvis.amlich.di.App
 import org.koin.android.BuildConfig
 
 object AppPrefs {
-    private const val PREF_NAME = "moviedb"
+    private const val PREF_NAME = "amlich"
 
     private val sharedPrefs by lazy {
         App.context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)

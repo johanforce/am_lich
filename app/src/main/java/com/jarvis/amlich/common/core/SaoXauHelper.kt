@@ -4,27 +4,27 @@ import com.jarvis.amlich.R
 import com.jarvis.amlich.di.App
 
 object SaoXauHelper {
-    val thienCuong =
+    private val thienCuong =
         listOf("Tỵ", "Tý", "Mùi", "Dần", "Dậu", "Thìn", "Hợi", "Ngọ", "Sửu", "Thân", "Mão", "Tuất")
-    val thuTu =
+    private val thuTu =
         listOf("Tuất", "Thìn", "Hợi", "Tỵ", "Tý", "Ngọ", "Sửu", "Mùi", "Dần", "Thân", "Mão", "Dậu")
-    val daiHao =
+    private val daiHao =
         listOf("Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ")
-    val tuKhi =
+    private val tuKhi =
         listOf("Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ")
-    val quanPhu =
+    private val quanPhu =
         listOf("Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ")
-    val tieuHao =
+    private val tieuHao =
         listOf("Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn")
-    val satChu =
+    private val satChu =
         listOf("Tý", "Tỵ", "Mùi", "Mão", "Thân", "Tuất", "Sửu", "Hợi", "Ngọ", "Dậu", "Dần", "Thìn")
-    val thienHoa =
+    private val thienHoa =
         listOf("Tý", "Mão", "Ngọ", "Dậu", "Tý", "Mão", "Ngọ", "Dậu", "Tý", "Mão", "Ngọ", "Dậu")
-    val diaHoa =
+    private val diaHoa =
         listOf("Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý", "Hợi")
-    val hoaTai =
+    private val hoaTai =
         listOf("Sửu", "Mùi", "Dần", "Thân", "Mão", "Dậu", "Thìn", "Tuất", "Tỵ", "Hợi", "Tý", "Ngọ")
-    val nguyetPha =
+    private val nguyetPha =
         listOf(
             "Thân",
             "Tuất",
@@ -39,33 +39,33 @@ object SaoXauHelper {
             "Mùi",
             "Mùi"
         )
-    val bangTieu =
+    private val bangTieu =
         listOf("Tỵ", "Tý", "Sửu", "Thân", "Mão", "Tuất", "Hợi", "Ngọ", "Mùi", "Dần", "Dậu", "Thìn")
-    val ngoaGiai =
+    private val ngoaGiai =
         listOf("Tỵ", "Tý", "Sửu", "Thân", "Mão", "Tuất", "Hợi", "Ngọ", "Mùi", "Dần", "Dậu", "Thìn")
-    val thoCam =
+    private val thoCam =
         listOf("Hợi", "Hợi", "Hợi", "Dần", "Dần", "Dần", "Tỵ", "Tỵ", "Tỵ", "Thân", "Thân", "Thân")
-    val thoKy =
+    private val thoKy =
         listOf("Dần", "Tỵ", "Thân", "Hợi", "Mão", "Ngọ", "Dậu", "Tý", "Thìn", "Mùi", "Tuất", "Sửu")
-    val vangVong =
+    private val vangVong =
         listOf("Dần", "Tỵ", "Thân", "Hợi", "Mão", "Ngọ", "Dậu", "Tý", "Thìn", "Mùi", "Tuất", "Sửu")
-    val coThan =
+    private val coThan =
         listOf("Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu")
-    val quaTu =
+    private val quaTu =
         listOf("Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão")
-    val trungTang =
+    private val trungTang =
         listOf("Giáp", "Ất", "Mậu", "Bính", "Đinh", "Kỷ", "Canh", "Tân", "Kỷ", "Nhâm", "Quý", "Mậu")
-    val trungPhuc =
+    private val trungPhuc =
         listOf("Canh", "Tân", "Kỷ", "Nhâm", "Quý", "Mậu", "Giáp", "Ất", "Kỷ", "Bính", "Đinh", "Mậu")
 
-    val khongPhong =
+    private val khongPhong =
         listOf("Thìn", "Tỵ", "Tý", "Tuất", "Hợi", "Mùi", "Ngọ", "Mão", "Dần", "Dậu", "Thân", "Sửu")
 
-    val thienTac =
+    private val thienTac =
         listOf("Thìn", "Dậu", "Dần", "Mùi", "Tý", "Tỵ", "Tuất", "Mão", "Thân", "Sửu", "Ngọ", "Hợi")
-    val phuDauDat =
+    private val phuDauDat =
         listOf("Thìn", "Thìn", "Thìn", "Mùi", "Mùi", "Mùi", "Ngọ", "Ngọ", "Ngọ", "Tý", "Tý", "Tý")
-    val tamTang = listOf(
+    private val tamTang = listOf(
         "Thìn",
         "Thìn",
         "Thìn",
@@ -79,9 +79,9 @@ object SaoXauHelper {
         "Sửu",
         "Sửu"
     )
-    val nguTu =
+    private val nguTu =
         listOf("Tý", "Dậu", "Sửu", "Thân", "Tý", "Thìn", "Hợi", "Mão", "Mùi", "Dần", "Ngọ", "Tuất")
-    val tuThoi = listOf(
+    private val tuThoi = listOf(
         "Ất Mùi",
         "Ất Mùi",
         "Ất Mùi",
@@ -95,11 +95,11 @@ object SaoXauHelper {
         "Nhâm Thìn",
         "Nhâm Thìn"
     )
-    val lucBatThanh =
+    private val lucBatThanh =
         listOf("Dần", "Ngọ", "Tuất", "Tỵ", "Dậu", "Sửu", "Thân", "Tý", "Thìn", "Hợi", "Mão", "Mùi")
-    val hoangSa =
+    private val hoangSa =
         listOf("Ngọ", "Dần", "Tý", "Ngọ", "Dần", "Tý", "Ngọ", "Dần", "Tý", "Ngọ", "Dần", "Tý")
-    val nguyetHu = listOf(
+    private val nguyetHu = listOf(
         "Sửu",
         "Tuất",
         "Mùi",
@@ -113,39 +113,39 @@ object SaoXauHelper {
         "Mùi",
         "Thìn"
     )
-    val nguyetYem =
+    private val nguyetYem =
         listOf("Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý", "Hợi")
-    val nguyetHoa =
+    private val nguyetHoa =
         listOf("Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý", "Hợi", "Tuất", "Tỵ", "Hợi", "Ngọ", "Tý")
-    val tieuHongSa = listOf("Tỵ", "", "", "", "", "", "", "", "", "", "", "")
-    val cuaKhong =
+    private val tieuHongSa = listOf("Tỵ", "", "", "", "", "", "", "", "", "", "", "")
+    private val cuaKhong =
         listOf("Thìn", "Sửu", "Tuất", "Mùi", "Mão", "Tý", "Dậu", "Ngọ", "Dần", "Hợi", "Thân", "Tý")
-    val chuTuoc =
+    private val chuTuoc =
         listOf("Mão", "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu")
-    val haKhoi =
+    private val haKhoi =
         listOf("Hợi", "Ngọ", "Sửu", "Thân", "Mão", "Tuất", "Tỵ", "Tý", "Mùi", "Dần", "Dậu", "Thìn")
-    val nguQuy =
+    private val nguQuy =
         listOf("Ngọ", "Dần", "Thìn", "Dậu", "Mão", "Thân", "Sửu", "Tỵ", "Tý", "Hợi", "Mùi", "Tuất")
-    val phiMaSat =
+    private val phiMaSat =
         listOf("Tý", "Dậu", "Ngọ", "Mão", "Tý", "Dậu", "Ngọ", "Mão", "Tý", "Dậu", "Ngọ", "Mão")
-    val thanCach =
+    private val thanCach =
         listOf("Tỵ", "Mão", "Sửu", "Hợi", "Dậu", "Mùi", "Tỵ", "Mão", "Sửu", "Hợi", "Dậu", "Mùi")
-    val nhanCach =
+    private val nhanCach =
         listOf("Dậu", "Mùi", "Tỵ", "Mão", "Sửu", "Hợi", "Dậu", "Mùi", "Tỵ", "Mão", "Sửu", "Hợi")
-    val diaTac =
+    private val diaTac =
         listOf("Sửu", "Tý", "Hợi", "Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần")
-    val nguyetKien =
+    private val nguyetKien =
         listOf("Mão", "Mão", "Mão", "Ngọ", "Ngọ", "Ngọ", "Dậu", "Dậu", "Dậu", "Tý", "Tý", "Tý")
-    val thienDia =
+    private val thienDia =
         listOf("Mão", "Mão", "Mão", "Ngọ", "Ngọ", "Ngọ", "Dậu", "Dậu", "Dậu", "Tý", "Tý", "Tý")
-    val loBanSat =
+    private val loBanSat =
         listOf("Tý", "Tý", "Tý", "Mão", "Mão", "Mão", "Ngọ", "Ngọ", "Ngọ", "Dậu", "Dậu", "Dậu")
-    val nguyetHinh =
+    private val nguyetHinh =
         listOf("Tỵ", "Tý", "Thìn", "Thân", "Ngọ", "Sửu", "Dần", "Dậu", "Mùi", "Hợi", "Mão", "Tuất")
-    val toiChi =
+    private val toiChi =
         listOf("Ngọ", "Tý", "Mùi", "Sửu", "Thân", "Dần", "Dậu", "Mão", "Tuất", "Thìn", "Hợi", "Tỵ")
 
-    val thienHinh = listOf(
+    private val thienHinh = listOf(
         "Dần",
         "Thìn",
         "Ngọ",
@@ -159,7 +159,7 @@ object SaoXauHelper {
         "Tuất",
         "Tý"
     )
-    val thienLao = listOf(
+    private val thienLao = listOf(
         "Thân",
         "Tuất",
         "Tý",
@@ -173,11 +173,11 @@ object SaoXauHelper {
         "Thìn",
         "Ngọ"
     )
-    val cauTran =
+    private val cauTran =
         listOf("Hợi", "Sửu", "Mão", "Tị", "Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ", "Mùi", "Dậu")
-    val satSu =
+    private val satSu =
         listOf("Thìn", "Tuất", "Thìn", "Mão", "Mão", "Sửu", "Mùi", "Sửu", "Tý", "Ngọ", "Ngọ", "Tý")
-    val bachHo = listOf(
+    private val bachHo = listOf(
         "Ngọ",
         "Thân",
         "Tuất",
@@ -191,16 +191,12 @@ object SaoXauHelper {
         "Dần",
         "Thìn"
     )
-    val lySang =
+    private val lySang =
         listOf("Dậu", "Dậu", "Dậu", "Dần", "Dần", "Dần", "Tuất", "Tuất", "Tuất", "Tỵ", "Tỵ", "Tỵ")
-    val nguyenVu =
+    private val nguyenVu =
         listOf("Dậu", "Hợi", "Sửu", "Mão", "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ", "Mùi")
-//    val thienOn = listOf("Mùi")
-//    val thoOn = listOf("Thìn")
-//    val hoangVu = listOf("Tỵ")
-//    val duongThac = listOf("Tỵ")
 
-    val listSaoXau =
+    private val listSaoXau =
         listOf(
             "Thiên Cương",
             "Thụ Tử",
@@ -256,7 +252,7 @@ object SaoXauHelper {
             "Nguyên Vu"
         )
 
-    val listListDay = listOf(
+    private val listListDay = listOf(
         thienCuong,
         thuTu,
         daiHao,
@@ -311,7 +307,7 @@ object SaoXauHelper {
         nguyenVu
     )
 
-    val listTitleDay = listOf(
+    private val listTitleDay = listOf(
         App.context.getString(R.string.des_thienCuong),
         App.context.getString(R.string.des_thuTu),
         App.context.getString(R.string.des_daiHao),
@@ -373,6 +369,408 @@ object SaoXauHelper {
         listListDay.mapIndexed { index, strings ->
             if (strings[thang - 1] == canDay || strings[thang - 1] == chiDay || strings[thang - 1] == "$canDay $chiDay") {
                 results.add(listSaoXau[index] + ": " + listTitleDay[index])
+            }
+        }
+        return results
+    }
+
+
+    private val thienDuc = listOf(
+        "Đinh",
+        "Thân",
+        "Nhâm",
+        "Tân",
+        "Hợi",
+        "Giáp",
+        "Quý",
+        "Dần",
+        "Bính",
+        "Ất",
+        "Tỵ",
+        "Canh"
+    )
+    private val thienDucHop =
+        listOf("Nhâm", "Tý", "Đinh", "Bính", "Dần", "Kỷ", "Mậu", "Hợi", "Tân", "Canh", "Thân", "Ất")
+    private val nguyetDuc = listOf(
+        "Bính",
+        "Giáp",
+        "Nhâm",
+        "Canh",
+        "Bính",
+        "Giáp",
+        "Nhâm",
+        "Canh",
+        "Bính",
+        "Giáp",
+        "Nhâm",
+        "Canh"
+    )
+    private val nguyetDucHop =
+        listOf("Tân", "Kỷ", "Đinh", "Ất", "Tân", "Kỷ", "Đinh", "Ất", "Tân", "Kỷ", "Đinh", "Ất")
+    private val thienHy =
+        listOf("Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu")
+    private val thienPhu =
+        listOf("Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão")
+
+    private val thienQuy1 = listOf(
+        "Giáp",
+        "Giáp",
+        "Giáp",
+        "Bính",
+        "Bính",
+        "Bính",
+        "Canh",
+        "Canh",
+        "Canh",
+        "Nhâm",
+        "Nhâm",
+        "Nhâm"
+    )
+    private val thienQuy2 =
+        listOf("Ất", "Ất", "Ất", "Đinh", "Đinh", "Đinh", "Tân", "Tân", "Tân", "Quý", "Quý", "Quý")
+    private val thienXa =
+        listOf(
+            "Mậu Dần",
+            "Mậu Dần",
+            "Mậu Dần",
+            "Giáp Ngọ",
+            "",
+            "Giáp Ngọ",
+            "Mậu Thân",
+            "Mậu Thân",
+            "Mậu Thân",
+            "Giáp Tý",
+            "",
+            "Giáp Tý"
+        )
+    private val sinhKhi =
+        listOf("Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi")
+    private val thienPhuc1 = listOf("Kỷ", "Mậu", "", "Tân", "Tân", "", "Ất", "Giáp", "", "Đinh", "Bính", "")
+    private val thienPhuc2 = listOf("", "", "", "Quý", "Nhâm", "", "", "", "", "", "", "")
+    private val thienThanh =
+        listOf("Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ")
+    private val thienQuan = listOf(
+        "Tuất",
+        "Tý",
+        "Dần",
+        "Thìn",
+        "Ngọ",
+        "Thân",
+        "Tuất",
+        "Tý",
+        "Dần",
+        "Thìn",
+        "Ngọ",
+        "Thân"
+    )
+    private val thienMa = listOf(
+        "Ngọ", "Thân", "Tuất", "Tý", "Dần", "Thìn", "Ngọ", "Thân", "Tuất", "Tý", "Dần", "Thìn"
+    )
+    private val kimQuy = listOf(
+        "Thìn", "Ngọ", "Thân", "Tuất", "Tý", "Dần", "Thìn", "Ngọ", "Thân", "Tuất", "Tý", "Dần"
+    )
+    private val baoQuang = listOf(
+        "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu", "Mão"
+    )
+    private val nguyetTai = listOf(
+        "Ngọ", "Tỵ", "Tỵ", "Mùi", "Dậu", "Hợi", "Ngọ", "Tỵ", "Tỵ", "Mùi", "Dậu", "Hợi"
+    )
+    private val nguyetAn = listOf(
+        "Bính", "Đinh", "Canh", "Kỷ", "Mậu", "Tân", "Nhâm", "Quý", "Canh", "Ất", "Giáp", "Tân"
+    )
+    private val nguyetKhong = listOf(
+        "Nhâm",
+        "Canh",
+        "Bính",
+        "Giáp",
+        "Nhâm",
+        "Canh",
+        "Bính",
+        "Giáp",
+        "Nhâm",
+        "Canh",
+        "Bính",
+        "Giáp"
+    )
+    private val minhTinh = listOf(
+        "Thân", "Tuất", "Tý", "Dần", "Thìn", "Ngọ", "Thân", "Tuất", "Tý", "Dần", "Thìn", "Ngọ"
+    )
+    private val thanhTam = listOf(
+        "Hợi", "Tỵ", "Tý", "Ngọ", "Sửu", "Mùi", "Dần", "Thân", "Mão", "Dậu", "Thìn", "Tuất"
+    )
+    private val nguPhu = listOf(
+        "Hợi", "Dần", "Tỵ", "Thân", "Hợi", "Dần", "Tỵ", "Thân", "Hợi", "Dần", "Tỵ", "Thân"
+    )
+    private val locKho = listOf(
+        "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão"
+    )
+    private val uViTinh = listOf(
+        "Hợi", "Thìn", "Sửu", "Ngọ", "Mão", "Thân", "Tỵ", "Tuất", "Mùi", "Tý", "Dậu", "Dần"
+    )
+    private val phucSinh = listOf(
+        "Dậu", "Mão", "Tuất", "Thìn", "Hợi", "Tỵ", "Tý", "Ngọ", "Sửu", "Mùi", "Dần", "Thân"
+    )
+    private val catKhanh = listOf(
+        "Dậu", "Dần", "Hợi", "Thìn", "Sửu", "Ngọ", "Mão", "Thân", "Tỵ", "Tuất", "Mùi", "Tý"
+    )
+    private val amDuc = listOf(
+        "Dậu", "Mùi", "Tỵ", "Mão", "Sửu", "Hợi", "Dậu", "Mùi", "Tỵ", "Mão", "Sửu", "Hợi"
+    )
+    private val macDucTinh = listOf(
+        "Dần", "Mùi", "Thìn", "Dậu", "Ngọ", "Hợi", "Thân", "Sửu", "Tuất", "Mão", "Tý", "Tỵ"
+    )
+    private val kinhTam = listOf(
+        "Mùi", "Sửu", "Thân", "Dần", "Dậu", "Mão", "Tuất", "Thìn", "Hợi", "Tỵ", "Tý", "Ngọ"
+    )
+    private val tueHop = listOf(
+        "Sửu", "Tý", "Hợi", "Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần"
+    )
+    private val nguyetGiai = listOf(
+        "Thân", "Thân", "Dậu", "Dậu", "Tuất", "Tuất", "Hợi", "Hợi", "Ngọ", "Ngọ", "Mùi", "Mùi"
+    )
+    private val quanNhat = listOf(
+        "", "Mão", "", "", "Ngọ", "", "", "Dậu", "", "", "Tý", ""
+    )
+    private val hoatDieu = listOf(
+        "Tỵ", "Tuất", "Mùi", "Tý", "Dậu", "Dần", "Hợi", "Thìn", "Sửu", "Ngọ", "Mão", "Thân"
+    )
+    private val giaiThan = listOf(
+        "Thân", "Thân", "Tuất", "Tuất", "Tý", "Tý", "Dần", "Dần", "Thìn", "Thìn", "Ngọ", "Ngọ"
+    )
+    private val phoHo = listOf(
+        "Thân", "Dần", "Dậu", "Mão", "Tuất", "Thìn", "Hợi", "Tỵ", "Tý", "Ngọ", "Sửu", "Mùi"
+    )
+    private val ichHau = listOf(
+        "Tý", "Ngọ", "Sửu", "Mùi", "Dần", "Thân", "Mão", "Dậu", "Thìn", "Tuất", "Tỵ", "Hợi"
+    )
+    private val tucThe = listOf(
+        "Sửu", "Mùi", "Dần", "Thân", "Mão", "Dậu", "Thìn", "Tuất", "Tỵ", "Hợi", "Ngọ", "Tý"
+    )
+    private val yeuYen = listOf(
+        "Dần", "Thân", "Mão", "Dậu", "Thìn", "Tuất", "Tỵ", "Hợi", "Ngọ", "Tý", "Mùi", "Sửu"
+    )
+    private val dichMa = listOf(
+        "Thân", "Tỵ", "Dần", "Hợi", "Thân", "Tỵ", "Dần", "Hợi", "Thân", "Tỵ", "Dần", "Hợi"
+    )
+    private val tamHop1 = listOf(
+        "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ"
+    )
+    private val tamHop2 = listOf(
+        "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu"
+    )
+    private val mauThuong1 = listOf(
+        "Hợi", "Hợi", "Hợi", "Dần", "Dần", "Dần", "Thìn", "Thìn", "Thìn", "Thân", "Thân", "Thân"
+    )
+    private val mauThuong2 = listOf(
+        "Tý", "Tý", "Tý", "Mão", "Mão", "Mão", "Sửu", "Sửu", "Sửu", "Dậu", "Dậu", "Dậu"
+    )
+    private val lucHop = listOf(
+        "Hợi", "Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý"
+    )
+    private val phucHau = listOf(
+        "Dần", "Dần", "Dần", "Tỵ", "Tỵ", "Tỵ", "Thân", "Thân", "Thân", "Hợi", "Hợi", "Hợi"
+    )
+    private val daiHongSa1 = listOf(
+        "Tý", "Tý", "Tý", "Thìn", "Thìn", "Thìn", "Ngọ", "Ngọ", "Ngọ", "Thân", "Thân", "Thân"
+    )
+    private val daiHongSa2 = listOf(
+        "Sửu", "Sửu", "Sửu", "Tỵ", "Tỵ", "Tỵ", "Mùi", "Mùi", "Mùi", "Tuất", "Tuất", "Tuất"
+    )
+    private val hoangAn = listOf(
+        "Tuất", "Sửu", "Dần", "Tỵ", "Dậu", "Mão", "Tý", "Ngọ", "Hợi", "Thìn", "Thân", "Mùi"
+    )
+    private val danNHat = listOf(
+        "Ngọ", "Ngọ", "Ngọ", "Dậu", "Dậu", "Dậu", "Tý", "Tý", "Tý", "Mão", "Mão", "Mão"
+    )
+    private val thanhLongHoangDao = listOf(
+        "Tý", "Dần", "Thìn", "Ngọ", "Thân", "Tuất", "Tý", "Dần", "Thìn", "Ngọ", "Thân", "Tuất"
+    )
+    private val minhDuong = listOf(
+        "Sửu", "Mão", "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ", "Mùi", "Dậu", "Hợi"
+    )
+    private val kimDuong = listOf(
+        "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu", "Mão"
+    )
+    private val ngocDuong = listOf(
+        "Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ", "Mùi", "Dậu", "Hợi", "Sửu", "Mão", "Tỵ"
+    )
+
+    private val nameSaoTot = listOf(
+        "Thiên Đức",
+        "Thiên Đức Hợp",
+        "Nguyệt Đức",
+        "Thiên Hỷ",
+        "Thiên Phú",
+        "Thiên Quý",
+        "Thiên Quý",
+        "Thiên Xá",
+        "Thiên Xá",
+        "Sinh Khí",
+        "Thiên Phúc",
+        "Thiên Phúc",
+        "Thiên Thành",
+        "Thiên Quan",
+        "Thiên Mã",
+        "Thiên Tài",
+        "Địa Tài",
+        "Nguyệt Tài",
+        "Nguyệt Ân",
+        "Nguyệt Không",
+        "Minh Tinh",
+        "Thánh tâm",
+        "Ngũ Phú",
+        "Lộc Khố",
+        "Phúc Sinh",
+        "Cát Khánh",
+        "Âm Đức",
+        "U Vi Tinh",
+        "Mãn Đức",
+        "Kính Tâm",
+        "Tuế Hợp",
+        "Nguyệt Giải",
+        "Quan Nhật",
+        "Hoạt Điệu",
+        "Giải Thần",
+        "Phổ Hộ",
+        "Ích Hậu",
+        "Tục Thế",
+        "Yếu Yên",
+        "Dịch Mã",
+        "Tam Hợp",
+        "Tam Hợp",
+        "Lục Hợp",
+        "Mẫu Thương",
+        "Mẫu Thương",
+        "Phúc Hậu",
+        "Đại Hồng Sa",
+        "Đại Hồng Sa",
+        "Dân Nhật",
+        "Hoàng Ân",
+        "Thanh Long",
+        "Minh Đường",
+        "Kim Đường",
+        "Ngọc Đường ",
+    )
+
+    private val listListSaoTot = listOf(
+        thienDuc,
+        thienDucHop,
+        nguyetDuc,
+        nguyetDucHop,
+        thienHy,
+        thienPhu,
+        thienQuy1,
+        thienQuy2,
+        thienXa,
+        sinhKhi,
+        thienPhuc1,
+        thienPhuc2,
+        thienThanh,
+        thienQuan,
+        thienMa,
+        kimQuy,
+        baoQuang,
+        nguyetTai,
+        nguyetAn,
+        nguyetKhong,
+        minhTinh,
+        thanhTam,
+        nguPhu,
+        locKho,
+        phucSinh,
+        catKhanh,
+        amDuc,
+        uViTinh,
+        macDucTinh,
+        kinhTam,
+        tueHop,
+        nguyetGiai,
+        quanNhat,
+        hoatDieu,
+        giaiThan,
+        phoHo,
+        ichHau,
+        tucThe,
+        yeuYen,
+        dichMa,
+        tamHop1,
+        tamHop2,
+        lucHop,
+        mauThuong1,
+        mauThuong2,
+        phucHau,
+        daiHongSa1,
+        daiHongSa2,
+        danNHat,
+        hoangAn,
+        thanhLongHoangDao,
+        minhDuong,
+        kimDuong,
+        ngocDuong
+    )
+
+    private val listTitleDaySaoTot = listOf(
+        App.context.getString(R.string.des_thienDuc),
+        App.context.getString(R.string.des_thienDucHop),
+        App.context.getString(R.string.des_nguyetDuc),
+        App.context.getString(R.string.des_nguyetDucHop),
+        App.context.getString(R.string.des_thienHy),
+        App.context.getString(R.string.des_thienPhu),
+        App.context.getString(R.string.des_thienQuy1),
+        App.context.getString(R.string.des_thienQuy2),
+        App.context.getString(R.string.des_thienXa),
+        App.context.getString(R.string.des_sinhKhi),
+        App.context.getString(R.string.des_thienPhuc1),
+        App.context.getString(R.string.des_thienPhuc2),
+        App.context.getString(R.string.des_thienThanh),
+        App.context.getString(R.string.des_thienQuan),
+        App.context.getString(R.string.des_thienMa),
+        App.context.getString(R.string.des_kimQuy),
+        App.context.getString(R.string.des_baoQuang),
+        App.context.getString(R.string.des_nguyetTai),
+        App.context.getString(R.string.des_nguyetAn),
+        App.context.getString(R.string.des_nguyetKhong),
+        App.context.getString(R.string.des_minhTinh),
+        App.context.getString(R.string.des_thanhTam),
+        App.context.getString(R.string.des_nguPhu),
+        App.context.getString(R.string.des_locKho),
+        App.context.getString(R.string.des_phucSinh),
+        App.context.getString(R.string.des_catKhanh),
+        App.context.getString(R.string.des_amDuc),
+        App.context.getString(R.string.des_uViTinh),
+        App.context.getString(R.string.des_macDucTinh),
+        App.context.getString(R.string.des_kinhTam),
+        App.context.getString(R.string.des_tueHop),
+        App.context.getString(R.string.des_nguyetGiai),
+        App.context.getString(R.string.des_quanNhat),
+        App.context.getString(R.string.des_hoatDieu),
+        App.context.getString(R.string.des_giaiThan),
+        App.context.getString(R.string.des_phoHo),
+        App.context.getString(R.string.des_ichHau),
+        App.context.getString(R.string.des_tucThe),
+        App.context.getString(R.string.des_yeuYen),
+        App.context.getString(R.string.des_dichMa),
+        App.context.getString(R.string.des_tamHop1),
+        App.context.getString(R.string.des_tamHop2),
+        App.context.getString(R.string.des_lucHop),
+        App.context.getString(R.string.des_mauThuong1),
+        App.context.getString(R.string.des_mauThuong2),
+        App.context.getString(R.string.des_phucHau),
+        App.context.getString(R.string.des_daiHongSa1),
+        App.context.getString(R.string.des_daiHongSa2),
+        App.context.getString(R.string.des_danNHat),
+        App.context.getString(R.string.des_hoangAn),
+        App.context.getString(R.string.des_thanhLongHoangDao),
+        App.context.getString(R.string.des_minhDuong),
+        App.context.getString(R.string.des_kimDuong),
+        App.context.getString(R.string.des_ngocDuong)
+    )
+
+    fun getSaoTot(canDay: String, chiDay: String, thang: Int): List<String> {
+        val results = mutableListOf<String>()
+        listListSaoTot.mapIndexed { index, strings ->
+            if (strings[thang - 1] == canDay || strings[thang - 1] == chiDay || strings[thang - 1] == "$canDay $chiDay") {
+                results.add(nameSaoTot[index] + ": " + SaoXauHelper.listTitleDaySaoTot[index])
             }
         }
         return results

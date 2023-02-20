@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.viewbinding.ViewBinding
+import com.jarvis.amlich.databinding.ActivityBaseBinding
 import com.jarvis.amlich.common.DebugLog
 import com.jarvis.amlich.common.dialog.AlertNotice
-import com.jarvis.amlich.databinding.ActivityBaseBinding
 
 abstract class BaseActivity<VB : ViewBinding>(
     val inflateBinding: (LayoutInflater, ViewGroup?, Boolean) -> VB

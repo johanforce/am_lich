@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/calendarFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.jarvis.amlich.presentation.ui.home.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home">
+        android:id="@+id/queFragment"
+        android:name="com.jarvis.amlich.presentation.ui.home.QueFragment"
+        android:label="QueFragment"
+        tools:layout="@layout/fragment_que">
         <action
-            android:id="@+id/action_homeFragment_to_detailFragment"
+            android:id="@+id/action_queFragment_to_detailFragment"
             app:destination="@id/detailFragment"
             app:enterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/exploreFragment"
-        android:name="com.jarvis.amlich.presentation.ui.explore.ExploreFragment"
-        android:label="ExploreFragment"
-        tools:layout="@layout/fragment_explore" />
+        android:id="@+id/calendarFragment"
+        android:name="com.jarvis.amlich.presentation.ui.explore.CalendarFragment"
+        android:label="CalendarFragment"
+        tools:layout="@layout/fragment_calendar" />
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.jarvis.amlich.presentation.ui.favorite.FavoriteFragment"

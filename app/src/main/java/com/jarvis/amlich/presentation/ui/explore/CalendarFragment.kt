@@ -1,30 +1,35 @@
-package com.jarvis.amlich.presentation.ui.calendar
+package com.jarvis.amlich.presentation.ui.explore
 
 import android.annotation.SuppressLint
 import android.view.View
+import com.jarvis.amlich.R
+import com.jarvis.amlich.base.BaseFragment
+import com.jarvis.amlich.common.utils.FileUtils
+import com.jarvis.amlich.common.utils.setTextColorRes
+import com.jarvis.amlich.databinding.ExampleCalendarDayBinding
+import com.jarvis.amlich.databinding.FragmentCalendarBinding
+import com.jarvis.amlich.presentation.ui.main.MainActivity
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
 import com.kizitonwose.calendarview.utils.next
 import com.kizitonwose.calendarview.utils.previous
-import com.jarvis.amlich.R
-import com.jarvis.amlich.base.BaseFragment
-import com.jarvis.amlich.common.utils.FileUtils
-import com.jarvis.amlich.common.utils.setTextColorRes
-import com.jarvis.amlich.databinding.ExampleCalendarDayBinding
-import com.jarvis.amlich.databinding.FragmentDiaryMonthBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.*
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.time.YearMonth
 import java.time.format.TextStyle
 import java.util.*
 
-class DiaryMonthFragment : BaseFragment<FragmentDiaryMonthBinding, DiaryViewModel>(
-    FragmentDiaryMonthBinding::inflate
-) {
+class CalendarFragment :
+    BaseFragment<FragmentCalendarBinding, CalendarViewModel>(FragmentCalendarBinding::inflate) {
+
+    override val viewModel: CalendarViewModel by viewModel()
+
     private var firstTime: Boolean = true
     private var displayMonth: YearMonth = YearMonth.now()
-    private var diaryActivity: DiaryActivity? = null
+    private var diaryActivity: MainActivity? = null
     private var lastDayOfSelectedMonth: LocalDate? = null
     private var firstDayOfSelectedMonth: LocalDate? = null
 
@@ -32,14 +37,11 @@ class DiaryMonthFragment : BaseFragment<FragmentDiaryMonthBinding, DiaryViewMode
     private val today = LocalDate.now()
     private val currentMonth = YearMonth.now()
 
-    override val viewModel: DiaryViewModel by viewModel()
-
     override fun initData() {
-        this.diaryActivity = activity as DiaryActivity
+        this.diaryActivity = activity as MainActivity
         if (diaryActivity == null) {
             return
         }
-
         initCalender()
         executePreviousMonth()
         executeNextMonth()
@@ -47,9 +49,9 @@ class DiaryMonthFragment : BaseFragment<FragmentDiaryMonthBinding, DiaryViewMode
     }
 
     private fun initCalender() {
-        if (!firstTime) {
-            return
-        }
+//        if (!firstTime) {
+//            return
+//        }
         firstTime = false
         val daysOfWeek = DayOfWeek.values()
         viewBD.cvMonth.setup(
@@ -83,20 +85,15 @@ class DiaryMonthFragment : BaseFragment<FragmentDiaryMonthBinding, DiaryViewMode
                     viewBD.cvMonth.notifyDayChanged(day)
 
                     val dayData = day.date
-                    viewBD.viewLunar.tvTitle.text =
-                        "Ngày: " + viewModel.getNameLunarDay(dayData) + "\n" +
-                                "Giờ hoàng đạo: " + viewModel.getListHourHoangDao(dayData)
-                            .toString() + "\n" +
-                                "Ngày: " + viewModel.getStatusDay(dayData) + "\n" +
-                                "Hướng tài thần: " + viewModel.getHuongTaiHy(dayData).first + "\n" +
-                                "Hướng hỷ thần: " + viewModel.getHuongTaiHy(dayData).second+"\n"+
-                                "Sao xấu: "+ viewModel.getSaoXau(dayData)
+                    viewBD.viewAmLich.initData(dayData)
+                    viewBD.layoutTitle.tvActivities.text = viewModel.getTetAmLichName(dayData)
                 }
             }
         }
 
         viewBD.cvMonth.dayBinder = object : DayBinder<DayViewContainer> {
             override fun create(view: View) = DayViewContainer(view)
+
             @SuppressLint("SetTextI18n")
             override fun bind(container: DayViewContainer, day: CalendarDay) {
                 container.day = day
@@ -107,11 +104,7 @@ class DiaryMonthFragment : BaseFragment<FragmentDiaryMonthBinding, DiaryViewMode
 
                 val dayData = day.date
 
-
-                exLunarDay.text =
-                    viewModel.getLunarDay(dayData)[0].toString() + "/" + viewModel.getLunarDay(
-                        dayData
-                    )[1].toString()
+                exLunarDay.text = viewModel.getStringLunarDay(dayData)
 
                 if (day.owner == DayOwner.THIS_MONTH) {
                     container.rootDay.isEnabled = true
@@ -126,7 +119,7 @@ class DiaryMonthFragment : BaseFragment<FragmentDiaryMonthBinding, DiaryViewMode
                         bgDay.setBackgroundResource(R.drawable.bg_boder_pri_3)
                     }
 
-                    today ->{
+                    today -> {
                         textView.setTextColorRes(R.color.pri_4)
                         bgDay.setBackgroundResource(R.color.transparent)
                     }
@@ -135,6 +128,8 @@ class DiaryMonthFragment : BaseFragment<FragmentDiaryMonthBinding, DiaryViewMode
                         textView.background = null
                     }
                 }
+                if (viewModel.isTetAmLich(dayData)) exLunarDay.setTextColorRes(R.color.bitter_sweat)
+                if (viewModel.isSunDayOrSaturday(dayData)) textView.setTextColorRes(R.color.bitter_sweat)
             }
         }
     }

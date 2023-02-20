@@ -1,15 +1,37 @@
-package com.jarvis.amlich.presentation.ui.calendar
+package com.jarvis.amlich.presentation.ui.explore
 
 import com.jarvis.amlich.base.BaseViewModel
 import com.jarvis.amlich.common.core.HourGoodBadHelper
 import com.jarvis.amlich.common.core.LunarCoreHelper
 import com.jarvis.amlich.common.core.SaoXauHelper
+import com.jarvis.amlich.common.core.TetHelper
+import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 
-class DiaryViewModel : BaseViewModel() {
+class CalendarViewModel : BaseViewModel() {
+    fun getStringLunarDay(dayData: LocalDate): String {
+        val day = getLunarDay(dayData)[0]
+        val month = getLunarDay(dayData)[1]
+        return "$day/$month"
+    }
+
+    fun getTetAmLichName(dayData: LocalDate): String {
+        return TetHelper.getTetAmLich(getStringLunarDay(dayData))
+    }
+    fun isTetAmLich(dayData: LocalDate): Boolean {
+        return TetHelper.isNgayLeAmLich(getStringLunarDay(dayData))
+    }
+
+    fun isSunDayOrSaturday(dayData: LocalDate): Boolean {
+        return when (dayData.dayOfWeek.value) {
+            DayOfWeek.SUNDAY.value, DayOfWeek.SATURDAY.value -> true
+            else -> false
+        }
+    }
+
     fun getLunarDay(dayData: LocalDate): IntArray {
         return LunarCoreHelper.convertSolar2Lunar(
             dayData.dayOfMonth,
@@ -69,6 +91,13 @@ class DiaryViewModel : BaseViewModel() {
         val canDay = getCanDay(dayData)
         val thangLunar = getLunarDay(dayData)[1]
         return SaoXauHelper.getSaoXau(canDay, chiDay, thangLunar)
+    }
+
+    fun getSaoTot(dayData: LocalDate): List<String> {
+        val chiDay = getChiDay(dayData)
+        val canDay = getCanDay(dayData)
+        val thangLunar = getLunarDay(dayData)[1]
+        return SaoXauHelper.getSaoTot(canDay, chiDay, thangLunar)
     }
 
     fun getStatusDay(dayData: LocalDate): String {

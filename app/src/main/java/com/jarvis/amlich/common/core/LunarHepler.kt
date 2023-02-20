@@ -1,6 +1,7 @@
 package com.jarvis.amlich.common.core
 
 import java.text.Normalizer
+import java.time.LocalDate
 import java.util.*
 import java.util.regex.Pattern
 import kotlin.math.floor
@@ -117,7 +118,7 @@ object LunarCoreHelper {
         arrayOf("thin", "suu", "dau", "mui")
     )
 
-    private fun isGoodDay(chiDay: String, lunarMonth: Int): Boolean {
+    fun isGoodDay(chiDay: String, lunarMonth: Int): Boolean {
         val data = goodDays[lunarMonth - 1]
         val tmp = data.size
         for (i in 0 until tmp) {
@@ -128,7 +129,7 @@ object LunarCoreHelper {
         return false
     }
 
-    private fun isBadDay(chiDay: String, lunarMonth: Int): Boolean {
+    fun isBadDay(chiDay: String, lunarMonth: Int): Boolean {
         if (isGoodDay(chiDay, lunarMonth)) return false
         val data = badDays[lunarMonth - 1]
         for (aData in data) {
@@ -229,7 +230,7 @@ object LunarCoreHelper {
      * @param canchi
      * @return Can-Chi with unaccented syllables, with an exception of "Tý" and "Tỵ" which has the same result when unaccented.
      */
-    private fun getUnAccentCanChi(canchi: String): String {
+    fun getUnAccentCanChi(canchi: String): String {
         var rs = unAccent(canchi)
         if (canchi.equals("tý", ignoreCase = true)) {
             rs += "s"
@@ -542,10 +543,52 @@ object LunarCoreHelper {
         val listResult = mutableListOf<String>()
         listHour.map { hour ->
             val s = listCanChi.first { hour == it.first }
-            listResult.add(s.second[position] + " " + hour)
+            listResult.add(s.second[position] + " " + hour + getTimeToChi(hour))
         }
         return listResult
     }
+
+    fun getTimeToChi(chi: String): String {
+        return when (chi) {
+            "Tý" -> ": 23h-1h"
+            "Sửu" -> ": 1h-3h"
+            "Dần" -> ": 3h-5h"
+            "Mão" -> ": 5h-7h"
+            "Thìn" -> ": 7h-9h"
+            "Tỵ" -> ": 9h-11h"
+            "Ngọ" -> ": 11h-13h"
+            "Mùi" -> ": 13h-15h"
+            "Thân" -> ": 15h-17h"
+            "Dậu" -> ": 17h-19h"
+            "Tuất" -> ": 19h-21h"
+            else -> ": 21h-23h"
+        }
+    }
+
+    fun getNameMonthLunar(monthLunar: Int): String {
+        return listMonthName[monthLunar - 1]
+    }
+
+    fun getCanInYear(year: Int): String {
+        return CAN[(year % 10 + 6) % 10]
+    }
+
+    fun getChiInYear(year: Int): String {
+        return CHI[(if (year > 2000) year % 100 + 4 else year % 100) % 12]
+    }
+
+    fun getYearName(dataDay: LocalDate): String {
+        val day = convertSolar2Lunar(dataDay.dayOfMonth, dataDay.monthValue, dataDay.year, 7.00)
+        val year = day[2]
+        return getCanInYear(year) + " " + getChiInYear(year)
+    }
+
+    val listMonthName = listOf(
+        "Dần", "Mão", "Thìn",
+        "Tỵ", "Ngọ", "Mùi",
+        "Thân", "Dậu", "Tuất",
+        "Hợi", "Tý", "Sửu",
+    )
 
     val listCanChi: List<Pair<String, List<String>>>
         get() = listOf(

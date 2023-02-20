@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/homeFragment"
+        android:id="@+id/calendarFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="@string/home" />
+        android:title="@string/calendar" />
     <item
-        android:id="@+id/exploreFragment"
+        android:id="@+id/queFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_explore_24"
-        android:title="@string/explore" />
+        android:title="@string/que" />
     <item
         android:id="@+id/favoriteFragment"
         android:enabled="true"

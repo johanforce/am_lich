@@ -1,16 +1,16 @@
 package com.jarvis.amlich.presentation.ui.home
 
-import android.content.Intent
+import com.jarvis.amlich.R
 import com.jarvis.amlich.base.BaseFragment
 import com.jarvis.amlich.base.recyclerview.SimpleBDAdapter
-import com.jarvis.amlich.databinding.FragmentHomeBinding
+import com.jarvis.amlich.databinding.FragmentQueBinding
 import com.jarvis.amlich.databinding.ItemQueBinding
 import com.jarvis.amlich.domain.model.QueModel
-import com.jarvis.amlich.presentation.ui.calendar.DiaryActivity
+import com.jarvis.amlich.presentation.ui.detail.DetailFragmentArgs
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment :
-    BaseFragment<FragmentHomeBinding, HomeViewModel>(FragmentHomeBinding::inflate) {
+class QueFragment :
+    BaseFragment<FragmentQueBinding, HomeViewModel>(FragmentQueBinding::inflate) {
 
     override val viewModel: HomeViewModel by viewModel()
 
@@ -24,10 +24,8 @@ class HomeFragment :
     override fun setupViews() {
         viewBD.recyclerQue.adapter = listQueAdapter.apply {
             onItemClick = { _, item, _ ->
-//                val bundle = DetailFragmentArgs(item.stt.toString()).toBundle()
-//                navigate(R.id.detailFragment, bundle)
-                val intent = Intent(context, DiaryActivity::class.java)
-                startActivity(intent)
+                val bundle = DetailFragmentArgs(item.stt.toString()).toBundle()
+                navigate(R.id.detailFragment, bundle)
             }
         }
     }

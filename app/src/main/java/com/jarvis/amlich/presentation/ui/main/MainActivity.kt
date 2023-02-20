@@ -20,10 +20,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     private val mainFragmentIdSet =
-        setOf(R.id.homeFragment, R.id.exploreFragment, R.id.favoriteFragment)
+        setOf(R.id.calendarFragment, R.id.queFragment, R.id.favoriteFragment)
 
     private val blockPopBackStackFragments =
-        setOf(R.id.homeFragment, R.id.exploreFragment, R.id.favoriteFragment)
+        setOf(R.id.calendarFragment, R.id.queFragment, R.id.favoriteFragment)
 
     override fun setupViews() {
         supportActionBar?.hide()
@@ -38,7 +38,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
             val isVisible = destination.id in mainFragmentIdSet
             viewBD.bottomNavigation.isVisible = isVisible
         }
-        viewBD.bottomNavigation.selectedItemId = R.id.homeFragment
+        viewBD.bottomNavigation.selectedItemId = R.id.calendarFragment
     }
 
     @Suppress("DEPRECATION")
