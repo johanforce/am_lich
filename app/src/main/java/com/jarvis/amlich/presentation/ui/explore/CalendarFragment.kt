@@ -4,11 +4,12 @@ import android.annotation.SuppressLint
 import android.view.View
 import com.jarvis.amlich.R
 import com.jarvis.amlich.base.BaseFragment
-import com.jarvis.amlich.common.utils.FileUtils
+import com.jarvis.amlich.common.extension.click
 import com.jarvis.amlich.common.utils.setTextColorRes
 import com.jarvis.amlich.databinding.ExampleCalendarDayBinding
 import com.jarvis.amlich.databinding.FragmentCalendarBinding
 import com.jarvis.amlich.presentation.ui.main.MainActivity
+import com.jarvis.amlich.presentation.ui.widget.DialogTimePicker
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
@@ -19,7 +20,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
-import java.time.format.TextStyle
 import java.util.*
 
 class CalendarFragment :
@@ -123,7 +123,7 @@ class CalendarFragment :
                         textView.setTextColorRes(R.color.pri_4)
                         bgDay.setBackgroundResource(R.drawable.bg_boder_pri_2)
 
-                        if(firstTime){
+                        if (firstTime) {
                             viewBD.viewAmLich.initData(today)
                             viewBD.layoutTitle.tvActivities.text = viewModel.getTetAmLichName(today)
                         }
@@ -148,16 +148,20 @@ class CalendarFragment :
             displayMonth = month.yearMonth
             firstDayOfSelectedMonth = month.yearMonth.atDay(1)
             lastDayOfSelectedMonth = month.yearMonth.atEndOfMonth()
-            val monthName = FileUtils.upCaseFirst(
-                month.yearMonth.month.getDisplayName(
-                    TextStyle.FULL,
-                    Locale.ENGLISH
-                )
-            )
-            val title = "${monthName}, ${month.year}"
+            val title = "Tháng " + "${month.month}, ${month.year}"
             viewBD.layoutTitle.tvCalendar.text = title
 //            viewBD.layoutTitle.btCalendarNext.isEnabled = month.yearMonth != currentMonth
 
+        }
+
+        viewBD.layoutTitle.tvCalendar.click {
+            val pd = DialogTimePicker()
+            pd.setListener { p0, year, month, p3 ->
+                val c = YearMonth.of(year, month)
+                selectedDate = c.atDay(1)
+                viewBD.cvMonth.scrollToMonth(c)
+            }
+            fragmentManager?.let { it1 -> pd.show(it1, "MonthYearPickerDialog") }
         }
     }
 

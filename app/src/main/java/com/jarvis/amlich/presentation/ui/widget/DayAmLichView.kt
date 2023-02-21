@@ -211,8 +211,7 @@ class DayAmLichView : FrameLayout {
     }
 
     private fun getNameMonth(dayData: LocalDate): String {
-        val month = getLunarDay(dayData)[1]
-        return LunarCoreHelper.getNameMonthLunar(month)
+        return LunarCoreHelper.getMonthLunarName(dayData)
     }
 
     private fun getXuatHanh(dayData: LocalDate): String {

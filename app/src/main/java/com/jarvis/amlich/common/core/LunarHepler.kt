@@ -583,6 +583,23 @@ object LunarCoreHelper {
         return getCanInYear(year) + " " + getChiInYear(year)
     }
 
+    fun getMonthLunarName(dataDay: LocalDate): String {
+        val day = convertSolar2Lunar(dataDay.dayOfMonth, dataDay.monthValue, dataDay.year, 7.00)
+        val year = day[2]
+        val month = day[1]
+        val canYear = getCanInYear(year)
+        val canStartMonthOfYear = when (canYear) {
+            "Giáp", "Kỷ" -> "Bính"
+            "Ất", "Canh" -> "Mậu"
+            "Bính", "Tân" -> "Canh"
+            "Đinh", "Nhâm" -> "Nhâm"
+            else -> "Giáp"
+        }
+        val position = CAN.indexOfFirst { it == canStartMonthOfYear }
+        val posMonthInCan = (position + month - 1) % 10
+        return CAN[posMonthInCan] + " " + getNameMonthLunar(month)
+    }
+
     val listMonthName = listOf(
         "Dần", "Mão", "Thìn",
         "Tỵ", "Ngọ", "Mùi",

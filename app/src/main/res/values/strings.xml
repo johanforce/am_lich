@@ -151,4 +151,6 @@
      <string name="des_kimDuong">Tốt mọi việc</string>
      <string name="des_ngocDuong">Tốt mọi việc</string>
     <string name="home_exit">Nhấn lại để thoát</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Hủy bỏ</string>
 </resources>
