@@ -179,7 +179,7 @@
 
     <style name="Divider1PxWildSandHorizontal">
         <item name="android:layout_height">@dimen/px0.5</item>
-        <item name="android:background">@color/wild_sand</item>
+        <item name="android:background">@color/ink_5</item>
     </style>
 
     <!--<editor-fold desc="Toolbar">-->

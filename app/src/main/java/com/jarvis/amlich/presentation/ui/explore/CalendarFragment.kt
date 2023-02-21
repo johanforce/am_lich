@@ -72,7 +72,7 @@ class CalendarFragment :
             init {
                 view.setOnClickListener {
                     if (selectedDate == day.date) {
-                        selectedDate = null
+//                        selectedDate = null
 
                         viewBD.cvMonth.notifyDayChanged(day)
                     } else {
@@ -144,7 +144,7 @@ class CalendarFragment :
 
         viewBD.cvMonth.monthScrollListener = { month ->
             clearSelected()
-            selectedDate = null
+//            selectedDate = null
             displayMonth = month.yearMonth
             firstDayOfSelectedMonth = month.yearMonth.atDay(1)
             lastDayOfSelectedMonth = month.yearMonth.atEndOfMonth()
@@ -180,7 +180,7 @@ class CalendarFragment :
     private fun clearSelected() {
         if (selectedDate != null) {
             val tempoSelectedDate = selectedDate
-            selectedDate = null
+//            selectedDate = null
             viewBD.cvMonth.notifyDateChanged(tempoSelectedDate!!)
         }
     }

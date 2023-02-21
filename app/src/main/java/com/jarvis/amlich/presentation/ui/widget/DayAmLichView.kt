@@ -24,7 +24,7 @@ class DayAmLichView : FrameLayout {
     private var binding: ViewEmptyHistoryBinding? = null
 
     private val listHourAdapter by lazy {
-        SimpleBDAdapter<ItemQueBinding, String>(ItemQueBinding::inflate) { itemBD, item, _ ->
+        SimpleBDAdapter<ItemHourStatusBinding, String>(ItemHourStatusBinding::inflate) { itemBD, item, _ ->
             itemBD.tvQue.text = item
         }
     }
