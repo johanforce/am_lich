@@ -10,7 +10,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvQue"
-            style="@style/T12H18R"
+            style="@style/T14H20R"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/px8"

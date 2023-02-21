@@ -7,6 +7,7 @@ import android.widget.FrameLayout
 import com.jarvis.amlich.R
 import com.jarvis.amlich.base.recyclerview.SimpleBDAdapter
 import com.jarvis.amlich.common.core.HourGoodBadHelper
+import com.jarvis.amlich.common.core.KhongMinhXuatHanh
 import com.jarvis.amlich.common.core.LunarCoreHelper
 import com.jarvis.amlich.common.core.LunarCoreHelper.getUnAccentCanChi
 import com.jarvis.amlich.common.core.SaoXauHelper
@@ -97,6 +98,8 @@ class DayAmLichView : FrameLayout {
             context.getString(R.string.tai_than_day, getHuongTaiHy(dayData).first)
         binding?.tvHyThan?.text =
             context.getString(R.string.hy_than_day, getHuongTaiHy(dayData).second)
+
+        binding?.tvKhongMinhDes?.text = getXuatHanh(dayData)
     }
 
     private fun getDayOfWeek(dayData: LocalDate): String {
@@ -210,5 +213,12 @@ class DayAmLichView : FrameLayout {
     private fun getNameMonth(dayData: LocalDate): String {
         val month = getLunarDay(dayData)[1]
         return LunarCoreHelper.getNameMonthLunar(month)
+    }
+
+    private fun getXuatHanh(dayData: LocalDate): String {
+        val data = getLunarDay(dayData)
+        val (day, month) = Pair(data[0], data[1])
+        val result = KhongMinhXuatHanh.getXuatHanhKhongMinh(day, month)
+        return context.getString(R.string.xuat_hanh_khong_minh_des, result.name, result.meaning)
     }
 }

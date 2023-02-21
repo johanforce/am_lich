@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LiveData
 import androidx.viewbinding.ViewBinding
 import com.jarvis.amlich.databinding.ActivityBaseBinding
 import com.jarvis.amlich.common.DebugLog
@@ -69,3 +71,8 @@ abstract class BaseActivity<VB : ViewBinding>(
         isErrorDialogShowing = true
     }
 }
+
+fun <T> LifecycleOwner.observe(liveData: LiveData<T>, action: (t: T) -> Unit) {
+    liveData.observe(this) { it?.let { t -> action(t) } }
+}
+

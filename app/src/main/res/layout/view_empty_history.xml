@@ -15,129 +15,118 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDayOfWeek"
-                style="@style/T14H20M"
+                style="@style/T16H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/ink_5"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/tvDayStatus"
+                app:layout_constraintRight_toLeftOf="@+id/tvDayLunarName"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Thứ Sáu" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDaySolar"
-                style="@style/T12H18R"
+                style="@style/T14H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/ink_5"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvMonthLunarName"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/tvDayStatus"
-                app:layout_constraintTop_toBottomOf="@+id/tvDayOfWeek"
+                app:layout_constraintRight_toLeftOf="@+id/tvDayLunarName"
                 tools:text="31-12-2023" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDayLunar"
-                style="@style/T12H18R"
+                style="@style/T14H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/ink_5"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/tvDayStatus"
+                app:layout_constraintRight_toLeftOf="@+id/tvDayLunarName"
                 app:layout_constraintTop_toBottomOf="@+id/tvDaySolar"
                 tools:text="23-12 Âm Lịch" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvTaiThan"
-                style="@style/T14H20M"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/px16"
-                android:layout_marginTop="@dimen/px8"
-                android:textColor="@color/ink_5"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerStarBad"
-                tools:text="Hướng Tài Thần: Tây Nam" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvDayStatus"
-                style="@style/T12H18R"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/px4"
-                android:gravity="center"
-                android:textColor="@color/ink_5"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tvDaySolar"
-                app:layout_constraintLeft_toRightOf="@+id/tvDayOfWeek"
-                app:layout_constraintRight_toLeftOf="@+id/tvDayLunarName"
-                tools:text="Ngày Hoàng Đạo" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivDotDay"
-                android:layout_width="@dimen/px12"
-                android:layout_height="@dimen/px12"
-                app:layout_constraintLeft_toRightOf="@+id/tvDayOfWeek"
-                app:layout_constraintRight_toLeftOf="@+id/tvDayLunarName"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/bg_hoang_dao" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvDayLunarName"
-                style="@style/T14H20M"
+                style="@style/T16H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/ink_5"
-                app:layout_constraintLeft_toRightOf="@+id/tvDayStatus"
+                app:layout_constraintLeft_toRightOf="@+id/tvDayOfWeek"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Ngày Nhâm Thìn" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMonthLunarName"
-                style="@style/T12H18R"
+                style="@style/T14H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/ink_5"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tvDayStatus"
-                app:layout_constraintLeft_toRightOf="@+id/tvDayStatus"
+                app:layout_constraintLeft_toRightOf="@+id/tvDayOfWeek"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDayLunarName"
                 tools:text="Tháng Thìn" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvYearLunarName"
-                style="@style/T12H18R"
+                style="@style/T14H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="@color/ink_5"
-                app:layout_constraintBaseline_toBaselineOf="@+id/tvDayLunar"
-                app:layout_constraintLeft_toRightOf="@+id/tvDayStatus"
+                app:layout_constraintLeft_toRightOf="@+id/tvDayOfWeek"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMonthLunarName"
                 tools:text="Năm Đinh Hợi" />
 
+            <View
+                android:id="@+id/line1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/border_0.5px"
+                style="@style/Divider1PxWildSandHorizontal"
+                android:layout_marginTop="@dimen/px8"
+                app:layout_constraintTop_toBottomOf="@id/tvYearLunarName"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivDotDay"
+                android:layout_width="@dimen/px12"
+                android:layout_height="@dimen/px12"
+                android:layout_marginTop="@dimen/px8"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line1"
+                app:srcCompat="@drawable/bg_hoang_dao" />
+
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvHyThan"
+                android:id="@+id/tvDayStatus"
                 style="@style/T14H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/px16"
-                android:layout_marginTop="@dimen/px8"
-                android:background="?android:selectableItemBackgroundBorderless"
+                android:layout_marginTop="@dimen/px4"
+                android:gravity="center"
                 android:textColor="@color/ink_5"
-                app:layout_constraintTop_toBottomOf="@id/tvTaiThan"
+                app:layout_constraintTop_toBottomOf="@+id/ivDotDay"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                tools:text="Hướng Hỷ Thần: Tây Nam" />
+                tools:text="Ngày Hoàng Đạo" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/border_0.5px"
+                style="@style/Divider1PxWildSandHorizontal"
+                android:layout_marginTop="@dimen/px8"
+                app:layout_constraintTop_toBottomOf="@id/tvDayStatus"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTitleHourStatus"
-                style="@style/T14H20M"
+                style="@style/T16H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px8"
@@ -146,7 +135,7 @@
                 android:textColor="@color/ink_5"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDayLunar" />
+                app:layout_constraintTop_toBottomOf="@+id/line2" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerHourGood"
@@ -160,9 +149,17 @@
                 app:spanCount="2"
                 tools:listitem="@layout/item_hour_status" />
 
+            <View
+                android:id="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/border_0.5px"
+                style="@style/Divider1PxWildSandHorizontal"
+                android:layout_marginTop="@dimen/px8"
+                app:layout_constraintTop_toBottomOf="@id/recyclerHourGood"/>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTitleStarGood"
-                style="@style/T14H20M"
+                style="@style/T16H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px8"
@@ -171,7 +168,7 @@
                 android:textColor="@color/ink_5"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerHourGood" />
+                app:layout_constraintTop_toBottomOf="@+id/line3" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerStarGood"
@@ -185,9 +182,17 @@
                 tools:itemCount="3"
                 tools:listitem="@layout/item_hour_status" />
 
+            <View
+                android:id="@+id/line4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/border_0.5px"
+                style="@style/Divider1PxWildSandHorizontal"
+                android:layout_marginTop="@dimen/px8"
+                app:layout_constraintTop_toBottomOf="@id/recyclerStarGood"/>
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTitleStarBad"
-                style="@style/T14H20M"
+                style="@style/T16H20M"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/px8"
@@ -196,7 +201,7 @@
                 android:textColor="@color/ink_5"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerStarGood" />
+                app:layout_constraintTop_toBottomOf="@+id/line4" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerStarBad"
@@ -209,6 +214,69 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvTitleStarBad"
                 tools:itemCount="3"
                 tools:listitem="@layout/item_hour_status" />
+
+            <View
+                android:id="@+id/line5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/border_0.5px"
+                style="@style/Divider1PxWildSandHorizontal"
+                android:layout_marginTop="@dimen/px8"
+                app:layout_constraintTop_toBottomOf="@id/recyclerStarBad"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTaiThan"
+                style="@style/T14H20M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/px16"
+                android:layout_marginTop="@dimen/px8"
+                android:textColor="@color/ink_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/line5"
+                tools:text="Hướng Tài Thần: Tây Nam" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvHyThan"
+                style="@style/T14H20M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/px16"
+                android:layout_marginTop="@dimen/px8"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:textColor="@color/ink_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTaiThan"
+                tools:text="Hướng Hỷ Thần: Tây Nam" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvKhongMinh"
+                style="@style/T14H20M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/px16"
+                android:layout_marginTop="@dimen/px8"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:textColor="@color/ink_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvHyThan"
+                android:text="@string/xuat_hanh_khong_minh" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvKhongMinhDes"
+                style="@style/T14H20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/px32"
+                android:layout_marginTop="@dimen/px8"
+                android:background="?android:selectableItemBackgroundBorderless"
+                android:textColor="@color/ink_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvKhongMinh"
+                tools:text="@string/xuat_hanh_khong_minh" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

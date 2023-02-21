@@ -178,7 +178,7 @@
     </style>
 
     <style name="Divider1PxWildSandHorizontal">
-        <item name="android:layout_height">@dimen/px1</item>
+        <item name="android:layout_height">@dimen/px0.5</item>
         <item name="android:background">@color/wild_sand</item>
     </style>
 

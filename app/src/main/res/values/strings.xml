@@ -25,6 +25,8 @@
     <string name="year">Year</string>
     <string name="day_lunar">%s Âm Lịch</string>
     <string name="day_lunar_name">Ngày %s</string>
+    <string name="xuat_hanh_khong_minh">Xuất Hành theo Khổng Minh:</string>
+    <string name="xuat_hanh_khong_minh_des">Hướng %s: %s\n* Ngày xuất hành theo lịch Khổng Minh ở đây nghĩa là ngày đi xa, rời khỏi nhà trong một khoảng thời gian dài, hoặc đi xa để làm hay thực hiện một công việc quan trọng nào đó. Ví dụ như: xuất hành đi công tác, xuất hành đi thi đại học, xuất hành di du lịch (áp dụng khi có thể chủ động về thời gian đi).</string>
     <string name="tai_than_day">Hướng tài thần: %s</string>
     <string name="hy_than_day">Hướng hỷ thần: %s</string>
     <string name="month_lunar">Tháng %s</string>
@@ -148,4 +150,5 @@
      <string name="des_minhDuong">Tốt mọi việc</string>
      <string name="des_kimDuong">Tốt mọi việc</string>
      <string name="des_ngocDuong">Tốt mọi việc</string>
+    <string name="home_exit">Nhấn lại để thoát</string>
 </resources>
