@@ -51,13 +51,12 @@ class CalenderDayLegendView : FrameLayout {
     private fun genDisplayDayName() {
         binding!!.root.children.forEachIndexed { index, view ->
             (view as TextView).apply {
-                text = DayOfWeek.values()[index].getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
-                    .uppercase(
-                        Locale.ENGLISH
-                    )
+                text = listWeek[index]
                 setTextColorRes(R.color.ink_3)
             }
         }
     }
+
+    val listWeek = listOf("Hai", "Ba", "Tư", "Năm", "Sáu", "Bảy", "CN")
 
 }

@@ -4,15 +4,12 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.core.view.isVisible
 import com.jarvis.amlich.R
 import com.jarvis.amlich.base.recyclerview.SimpleBDAdapter
-import com.jarvis.amlich.common.core.HourGoodBadHelper
-import com.jarvis.amlich.common.core.KhongMinhXuatHanh
-import com.jarvis.amlich.common.core.LunarCoreHelper
+import com.jarvis.amlich.common.core.*
 import com.jarvis.amlich.common.core.LunarCoreHelper.getUnAccentCanChi
-import com.jarvis.amlich.common.core.SaoXauHelper
 import com.jarvis.amlich.databinding.ItemHourStatusBinding
-import com.jarvis.amlich.databinding.ItemQueBinding
 import com.jarvis.amlich.databinding.ViewEmptyHistoryBinding
 import java.time.DayOfWeek
 import java.time.Instant
@@ -73,8 +70,27 @@ class DayAmLichView : FrameLayout {
     }
 
     fun initData(dayData: LocalDate) {
-        val isBadDay = isBadDay(dayData)
-        binding?.ivDotDay?.setImageResource(if (isBadDay) R.drawable.bg_hac_dao else R.drawable.bg_hoang_dao)
+        binding?.ivDotDay?.isVisible = true
+        binding?.tvDayStatus?.isVisible = true
+        binding?.line1?.isVisible = true
+        when {
+            statusDay(dayData) == StatusDayEnum.VERY_GOOD.value -> {
+                binding?.ivDotDay?.setImageResource(R.drawable.bg_thanh_long_hoang_dao)
+            }
+            statusDay(dayData) == StatusDayEnum.GOOD.value -> {
+                binding?.ivDotDay?.setImageResource(R.drawable.bg_hoang_dao)
+            }
+            statusDay(dayData) == StatusDayEnum.BAD.value -> {
+                binding?.ivDotDay?.setImageResource(R.drawable.bg_hac_dao)
+            }
+            else -> {
+                binding?.ivDotDay?.isVisible = false
+                binding?.tvDayStatus?.isVisible = false
+                binding?.line1?.isVisible = false
+            }
+        }
+
+
         binding?.tvDayStatus?.text = getStatusDay(dayData)
         binding?.tvDaySolar?.text = getDaySonar(dayData)
         binding?.tvDayOfWeek?.text = getDayOfWeek(dayData)
@@ -83,7 +99,8 @@ class DayAmLichView : FrameLayout {
             context.getString(R.string.day_lunar_name, getNameLunarDay(dayData))
         binding?.tvMonthLunarName?.text =
             context.getString(R.string.month_lunar, getNameMonth(dayData))
-        binding?.tvYearLunarName?.text = LunarCoreHelper.getYearName(dayData)
+        binding?.tvYearLunarName?.text =
+            context.getString(R.string.year_lunar, LunarCoreHelper.getYearName(dayData))
 
         listHourAdapter.submitList(getListHourHoangDao(dayData))
         binding?.recyclerHourGood?.adapter = listHourAdapter
@@ -189,7 +206,13 @@ class DayAmLichView : FrameLayout {
     private fun getStatusDay(dayData: LocalDate): String {
         val chiDay = getChiDay(dayData)
         val lunarDay = getLunarDay(dayData)
-        return LunarCoreHelper.rateDay(chiDay, lunarDay[1])
+        return LunarCoreHelper.rateDay(
+            chiDay, lunarDay[1], LunarCoreHelper.getChiDayLunar(
+                dayData.dayOfMonth,
+                dayData.monthValue,
+                dayData.year
+            )
+        )
     }
 
     private fun isBadDay(dayData: LocalDate): Boolean {
@@ -219,5 +242,18 @@ class DayAmLichView : FrameLayout {
         val (day, month) = Pair(data[0], data[1])
         val result = KhongMinhXuatHanh.getXuatHanhKhongMinh(day, month)
         return context.getString(R.string.xuat_hanh_khong_minh_des, result.name, result.meaning)
+    }
+
+    fun statusDay(dayData: LocalDate): Int {
+        val chiDay = getChiDay(dayData)
+        val lunarDay = getLunarDay(dayData)
+        val chiDays = getUnAccentCanChi(chiDay)
+        return LunarCoreHelper.rateDayStatus(
+            chiDays, lunarDay[1], LunarCoreHelper.getChiDayLunar(
+                dayData.dayOfMonth,
+                dayData.monthValue,
+                dayData.year
+            )
+        )
     }
 }

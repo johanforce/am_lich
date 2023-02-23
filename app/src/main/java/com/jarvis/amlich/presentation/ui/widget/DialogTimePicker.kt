@@ -26,6 +26,7 @@ class DialogTimePicker : DialogFragment() {
         val dialog: View = inflater.inflate(R.layout.dialog_time, null)
         val monthPicker = dialog.findViewById(R.id.picker_month) as NumberPicker
         val yearPicker = dialog.findViewById(R.id.picker_year) as NumberPicker
+
         monthPicker.minValue = 1
         monthPicker.maxValue = 12
         monthPicker.value = cal.get(Calendar.MONTH)

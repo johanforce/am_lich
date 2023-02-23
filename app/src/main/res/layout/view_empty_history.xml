@@ -5,7 +5,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -87,11 +88,11 @@
 
             <View
                 android:id="@+id/line1"
+                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/border_0.5px"
-                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_marginTop="@dimen/px8"
-                app:layout_constraintTop_toBottomOf="@id/tvYearLunarName"/>
+                app:layout_constraintTop_toBottomOf="@id/tvYearLunarName" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivDotDay"
@@ -111,18 +112,18 @@
                 android:layout_marginTop="@dimen/px4"
                 android:gravity="center"
                 android:textColor="@color/ink_5"
-                app:layout_constraintTop_toBottomOf="@+id/ivDotDay"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ivDotDay"
                 tools:text="Ngày Hoàng Đạo" />
 
             <View
                 android:id="@+id/line2"
+                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/border_0.5px"
-                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_marginTop="@dimen/px8"
-                app:layout_constraintTop_toBottomOf="@id/tvDayStatus"/>
+                app:layout_constraintTop_toBottomOf="@id/tvDayStatus" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTitleHourStatus"
@@ -142,6 +143,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -151,11 +153,11 @@
 
             <View
                 android:id="@+id/line3"
+                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/border_0.5px"
-                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_marginTop="@dimen/px8"
-                app:layout_constraintTop_toBottomOf="@id/recyclerHourGood"/>
+                app:layout_constraintTop_toBottomOf="@id/recyclerHourGood" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTitleStarGood"
@@ -175,6 +177,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -184,11 +187,11 @@
 
             <View
                 android:id="@+id/line4"
+                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/border_0.5px"
-                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_marginTop="@dimen/px8"
-                app:layout_constraintTop_toBottomOf="@id/recyclerStarGood"/>
+                app:layout_constraintTop_toBottomOf="@id/recyclerStarGood" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTitleStarBad"
@@ -208,6 +211,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -217,11 +221,11 @@
 
             <View
                 android:id="@+id/line5"
+                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/border_0.5px"
-                style="@style/Divider1PxWildSandHorizontal"
                 android:layout_marginTop="@dimen/px8"
-                app:layout_constraintTop_toBottomOf="@id/recyclerStarBad"/>
+                app:layout_constraintTop_toBottomOf="@id/recyclerStarBad" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvTaiThan"
@@ -258,18 +262,18 @@
                 android:layout_marginStart="@dimen/px16"
                 android:layout_marginTop="@dimen/px8"
                 android:background="?android:selectableItemBackgroundBorderless"
+                android:text="@string/xuat_hanh_khong_minh"
                 android:textColor="@color/ink_5"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvHyThan"
-                android:text="@string/xuat_hanh_khong_minh" />
+                app:layout_constraintTop_toBottomOf="@id/tvHyThan" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvKhongMinhDes"
                 style="@style/T14H20"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/px32"
+                android:layout_marginStart="@dimen/px16"
                 android:layout_marginTop="@dimen/px8"
                 android:background="?android:selectableItemBackgroundBorderless"
                 android:textColor="@color/ink_5"

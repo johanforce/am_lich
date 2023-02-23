@@ -28,8 +28,16 @@ object LunarCoreHelper {
     // 10 Heavenly Stems
     // Vietnamese Heavenly Stems (or "Thiên Can")
     private val CAN = arrayOf(
-        "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh",
-        "Tân", "Nhâm", "Quý"
+        CanEnum.GIAP.valueStr,
+        CanEnum.AT.valueStr,
+        CanEnum.BINH.valueStr,
+        CanEnum.DINH.valueStr,
+        CanEnum.MAU.valueStr,
+        CanEnum.KY.valueStr,
+        CanEnum.CANH.valueStr,
+        CanEnum.TAN.valueStr,
+        CanEnum.NHAM.valueStr,
+        CanEnum.QUY.valueStr,
     )
 
     private val canEnum = arrayOf(
@@ -54,8 +62,18 @@ object LunarCoreHelper {
     // 12 Earthly Branches
     // Vietnamese Earthly Branches (or "Địa Chi")
     private val CHI = arrayOf(
-        "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ",
-        "Mùi", "Thân", "Dậu", "Tuất", "Hợi"
+        ChiEnum.TY.valueStr,
+        ChiEnum.SUU.valueStr,
+        ChiEnum.DAN.valueStr,
+        ChiEnum.MAO.valueStr,
+        ChiEnum.THIN.valueStr,
+        ChiEnum.TI.valueStr,
+        ChiEnum.NGO.valueStr,
+        ChiEnum.MUI.valueStr,
+        ChiEnum.THAN.valueStr,
+        ChiEnum.DAU.valueStr,
+        ChiEnum.TUAT.valueStr,
+        ChiEnum.HOI.valueStr,
     )
 
     private val chiEnum = listOf(
@@ -248,15 +266,43 @@ object LunarCoreHelper {
      * We use Can-Chi string with unaccented syllables to compare.
      * And yeah, "rateDay" is not a really good name for this method!
      */
-    fun rateDay(chiDay: String, lunarMonth: Int): String {
+    fun rateDay(chiDay: String, lunarMonth: Int, nameChiDay: String): String {
         var chiDay = chiDay
         chiDay = getUnAccentCanChi(chiDay)
-        return if (isGoodDay(chiDay, lunarMonth)) {
-            "Thanh Long Hoàng Đạo"
+        return when {
+            isGoodDay(
+                chiDay,
+                lunarMonth
+            ) && SaoXauHelper.thanhLongHoangDao[lunarMonth - 1] == nameChiDay -> {
+                "Thanh Long Hoàng Đạo"
+            }
+            isGoodDay(chiDay, lunarMonth) -> {
+                "Hoàng Đạo"
+            }
+            isBadDay(chiDay, lunarMonth) -> {
+                "Hắc Đạo"
+            }
+            else -> {
+                "Hoàng Đạo"
+            }
+        }
+    }
+
+    fun rateDayStatus(chiDay: String, lunarMonth: Int, nameChiDay: String): Int {
+        var chiDay = chiDay
+        chiDay = getUnAccentCanChi(chiDay)
+        return if (isGoodDay(
+                chiDay,
+                lunarMonth
+            ) && SaoXauHelper.thanhLongHoangDao[lunarMonth - 1] == nameChiDay
+        ) {
+            StatusDayEnum.VERY_GOOD.value
+        } else if (isGoodDay(chiDay, lunarMonth)) {
+            StatusDayEnum.GOOD.value
         } else if (isBadDay(chiDay, lunarMonth)) {
-            "Hắc Đạo"
+            StatusDayEnum.BAD.value
         } else {
-            "Hoàng Đạo"
+            StatusDayEnum.NORMAL.value
         }
     }
 
@@ -550,17 +596,17 @@ object LunarCoreHelper {
 
     fun getTimeToChi(chi: String): String {
         return when (chi) {
-            "Tý" -> ": 23h-1h"
-            "Sửu" -> ": 1h-3h"
-            "Dần" -> ": 3h-5h"
-            "Mão" -> ": 5h-7h"
-            "Thìn" -> ": 7h-9h"
-            "Tỵ" -> ": 9h-11h"
-            "Ngọ" -> ": 11h-13h"
-            "Mùi" -> ": 13h-15h"
-            "Thân" -> ": 15h-17h"
-            "Dậu" -> ": 17h-19h"
-            "Tuất" -> ": 19h-21h"
+            ChiEnum.TY.valueStr -> ": 23h-1h"
+            ChiEnum.SUU.valueStr -> ": 1h-3h"
+            ChiEnum.DAN.valueStr -> ": 3h-5h"
+            ChiEnum.MAO.valueStr -> ": 5h-7h"
+            ChiEnum.THIN.valueStr -> ": 7h-9h"
+            ChiEnum.TI.valueStr -> ": 9h-11h"
+            ChiEnum.NGO.valueStr -> ": 11h-13h"
+            ChiEnum.MUI.valueStr -> ": 13h-15h"
+            ChiEnum.THAN.valueStr -> ": 15h-17h"
+            ChiEnum.DAU.valueStr -> ": 17h-19h"
+            ChiEnum.TUAT.valueStr -> ": 19h-21h"
             else -> ": 21h-23h"
         }
     }
@@ -589,11 +635,11 @@ object LunarCoreHelper {
         val month = day[1]
         val canYear = getCanInYear(year)
         val canStartMonthOfYear = when (canYear) {
-            "Giáp", "Kỷ" -> "Bính"
-            "Ất", "Canh" -> "Mậu"
-            "Bính", "Tân" -> "Canh"
-            "Đinh", "Nhâm" -> "Nhâm"
-            else -> "Giáp"
+            CanEnum.GIAP.valueStr, CanEnum.KY.valueStr -> CanEnum.BINH.valueStr
+            CanEnum.AT.valueStr, CanEnum.CANH.valueStr -> CanEnum.MAU.valueStr
+            CanEnum.TAN.valueStr, CanEnum.BINH.valueStr -> CanEnum.CANH.valueStr
+            CanEnum.DINH.valueStr, CanEnum.NHAM.valueStr -> CanEnum.NHAM.valueStr
+            else -> CanEnum.GIAP.valueStr
         }
         val position = CAN.indexOfFirst { it == canStartMonthOfYear }
         val posMonthInCan = (position + month - 1) % 10
@@ -601,37 +647,117 @@ object LunarCoreHelper {
     }
 
     val listMonthName = listOf(
-        "Dần", "Mão", "Thìn",
-        "Tỵ", "Ngọ", "Mùi",
-        "Thân", "Dậu", "Tuất",
-        "Hợi", "Tý", "Sửu",
+        ChiEnum.DAN.valueStr,
+        ChiEnum.MAO.valueStr,
+        ChiEnum.THIN.valueStr,
+        ChiEnum.TI.valueStr,
+        ChiEnum.NGO.valueStr,
+        ChiEnum.MUI.valueStr,
+        ChiEnum.THAN.valueStr,
+        ChiEnum.DAU.valueStr,
+        ChiEnum.TUAT.valueStr,
+        ChiEnum.HOI.valueStr,
+        ChiEnum.TY.valueStr,
+        ChiEnum.SUU.valueStr
     )
 
     val listCanChi: List<Pair<String, List<String>>>
         get() = listOf(
-            Pair("Tý", listCanForTy),
-            Pair("Sửu", listCanForSuu),
-            Pair("Dần", listCanForDan),
-            Pair("Mão", listCanForMao),
-            Pair("Thìn", listCanForThin),
-            Pair("Tỵ", listCanForTi),
-            Pair("Ngọ", listCanForNgo),
-            Pair("Mùi", listCanForMui),
-            Pair("Thân", listCanForThan),
-            Pair("Dậu", listCanForDau),
-            Pair("Tuất", listCanForTuat),
-            Pair("Hợi", listCanForHoi),
+            Pair(ChiEnum.TY.valueStr, listCanForTy),
+            Pair(ChiEnum.SUU.valueStr, listCanForSuu),
+            Pair(ChiEnum.DAN.valueStr, listCanForDan),
+            Pair(ChiEnum.MAO.valueStr, listCanForMao),
+            Pair(ChiEnum.THIN.valueStr, listCanForThin),
+            Pair(ChiEnum.TI.valueStr, listCanForTi),
+            Pair(ChiEnum.NGO.valueStr, listCanForNgo),
+            Pair(ChiEnum.MUI.valueStr, listCanForMui),
+            Pair(ChiEnum.THAN.valueStr, listCanForThan),
+            Pair(ChiEnum.DAU.valueStr, listCanForDau),
+            Pair(ChiEnum.TUAT.valueStr, listCanForTuat),
+            Pair(ChiEnum.HOI.valueStr, listCanForHoi),
         )
-    private val listCanForTy = listOf("Giáp", "Bính", "Mậu", "Canh", "Nhâm")
-    private val listCanForDan = listOf("Bính", "Mậu", "Canh", "Nhâm", "Giáp")
-    private val listCanForThin = listOf("Mậu", "Canh", "Nhâm", "Giáp", "Bính")
-    private val listCanForNgo = listOf("Canh", "Nhâm", "Giáp", "Bính", "Mậu")
-    private val listCanForThan = listOf("Nhâm", "Giáp", "Bính", "Mậu", "Canh")
-    private val listCanForTuat = listOf("Giáp", "Bính", "Mậu", "Canh", "Nhâm")
-    private val listCanForSuu = listOf("Ất", "Đinh", "Kỷ", "Tân", "Quý")
-    private val listCanForMao = listOf("Đinh", "Kỷ", "Tân", "Quý", "Ất")
-    private val listCanForTi = listOf("Kỷ", "Tân", "Quý", "Ất", "Đinh")
-    private val listCanForMui = listOf("Tân", "Quý", "Ất", "Đinh", "Kỷ")
-    private val listCanForDau = listOf("Quý", "Ất", "Đinh", "Kỷ", "Tân")
-    private val listCanForHoi = listOf("Ất", "Đinh", "Kỷ", "Tân", "Quý")
+    private val listCanForTy = listOf(
+        CanEnum.GIAP.valueStr,
+        CanEnum.BINH.valueStr,
+        CanEnum.MAU.valueStr,
+        CanEnum.CANH.valueStr,
+        CanEnum.NHAM.valueStr
+    )
+    private val listCanForDan = listOf(
+        CanEnum.BINH.valueStr,
+        CanEnum.MAU.valueStr,
+        CanEnum.CANH.valueStr,
+        CanEnum.NHAM.valueStr,
+        CanEnum.GIAP.valueStr
+    )
+    private val listCanForThin = listOf(
+        CanEnum.MAU.valueStr,
+        CanEnum.CANH.valueStr,
+        CanEnum.NHAM.valueStr,
+        CanEnum.GIAP.valueStr,
+        CanEnum.BINH.valueStr
+    )
+    private val listCanForNgo = listOf(
+        CanEnum.CANH.valueStr,
+        CanEnum.NHAM.valueStr,
+        CanEnum.GIAP.valueStr,
+        CanEnum.BINH.valueStr,
+        CanEnum.MAU.valueStr
+    )
+    private val listCanForThan = listOf(
+        CanEnum.NHAM.valueStr,
+        CanEnum.GIAP.valueStr,
+        CanEnum.BINH.valueStr,
+        CanEnum.MAU.valueStr,
+        CanEnum.CANH.valueStr
+    )
+    private val listCanForTuat = listOf(
+        CanEnum.GIAP.valueStr,
+        CanEnum.BINH.valueStr,
+        CanEnum.MAU.valueStr,
+        CanEnum.CANH.valueStr,
+        CanEnum.NHAM.valueStr
+    )
+    private val listCanForSuu = listOf(
+        CanEnum.AT.valueStr,
+        CanEnum.DINH.valueStr,
+        CanEnum.KY.valueStr,
+        CanEnum.TAN.valueStr,
+        CanEnum.QUY.valueStr
+    )
+    private val listCanForMao = listOf(
+        CanEnum.DINH.valueStr,
+        CanEnum.KY.valueStr,
+        CanEnum.TAN.valueStr,
+        CanEnum.QUY.valueStr,
+        CanEnum.AT.valueStr
+    )
+    private val listCanForTi = listOf(
+        CanEnum.KY.valueStr,
+        CanEnum.TAN.valueStr,
+        CanEnum.QUY.valueStr,
+        CanEnum.AT.valueStr,
+        CanEnum.DINH.valueStr
+    )
+    private val listCanForMui = listOf(
+        CanEnum.TAN.valueStr,
+        CanEnum.QUY.valueStr,
+        CanEnum.AT.valueStr,
+        CanEnum.DINH.valueStr,
+        CanEnum.KY.valueStr
+    )
+    private val listCanForDau = listOf(
+        CanEnum.QUY.valueStr,
+        CanEnum.AT.valueStr,
+        CanEnum.DINH.valueStr,
+        CanEnum.KY.valueStr,
+        CanEnum.TAN.valueStr
+    )
+    private val listCanForHoi = listOf(
+        CanEnum.AT.valueStr,
+        CanEnum.DINH.valueStr,
+        CanEnum.KY.valueStr,
+        CanEnum.TAN.valueStr,
+        CanEnum.QUY.valueStr
+    )
 }

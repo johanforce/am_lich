@@ -45,3 +45,17 @@ enum class PhuongHuong(var valueStr: String, val value: Int) {
     TAY("Tây", 1),
     TAY_BAC("Tây Bắc", 1),
 }
+
+enum class StatusEnum(var valueStr: String, val value: Int) {
+    // action card not DONE
+    GOOD("Tốt", 1),
+    BAD("Xấu", 0),
+}
+
+enum class StatusDayEnum(var valueStr: String, val value: Int) {
+    // action card not DONE
+    VERY_GOOD("Thanh Long Hoàng Đạo", 0),
+    GOOD("Hoàng Đạo", 1),
+    BAD("Hắc Đạo", 2),
+    NORMAL("Bình Thường", 3),
+}

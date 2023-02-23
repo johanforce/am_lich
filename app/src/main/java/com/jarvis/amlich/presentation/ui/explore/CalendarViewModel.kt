@@ -21,6 +21,7 @@ class CalendarViewModel : BaseViewModel() {
     fun getTetAmLichName(dayData: LocalDate): String {
         return TetHelper.getTetAmLich(getStringLunarDay(dayData))
     }
+
     fun isTetAmLich(dayData: LocalDate): Boolean {
         return TetHelper.isNgayLeAmLich(getStringLunarDay(dayData))
     }
@@ -38,6 +39,19 @@ class CalendarViewModel : BaseViewModel() {
             dayData.monthValue,
             dayData.year,
             7.00
+        )
+    }
+
+    fun statusDay(dayData: LocalDate): Int {
+        val chiDay = getChiDay(dayData)
+        val lunarDay = getLunarDay(dayData)
+        val chiDays = LunarCoreHelper.getUnAccentCanChi(chiDay)
+        return LunarCoreHelper.rateDayStatus(
+            chiDays, lunarDay[1], LunarCoreHelper.getChiDayLunar(
+                dayData.dayOfMonth,
+                dayData.monthValue,
+                dayData.year
+            )
         )
     }
 
@@ -98,16 +112,5 @@ class CalendarViewModel : BaseViewModel() {
         val canDay = getCanDay(dayData)
         val thangLunar = getLunarDay(dayData)[1]
         return SaoXauHelper.getSaoTot(canDay, chiDay, thangLunar)
-    }
-
-    fun getStatusDay(dayData: LocalDate): String {
-        val chiDay = getChiDay(dayData)
-        val lunarDay = getLunarDay(dayData)
-        return LunarCoreHelper.rateDay(chiDay, lunarDay[1])
-    }
-
-    fun getHuongTaiHy(dayData: LocalDate): Pair<String, String> {
-        val canDay = getCanDay(dayData)
-        return HourGoodBadHelper.getTaiHyPhuongHuong(canDay)
     }
 }

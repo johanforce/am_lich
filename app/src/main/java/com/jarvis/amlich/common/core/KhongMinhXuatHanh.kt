@@ -170,9 +170,3 @@ data class KhongMinhDay(
     val status: Int,
     val meaning: String
 )
-
-enum class StatusEnum(var valueStr: String, val value: Int) {
-    // action card not DONE
-    GOOD("Tốt", 1),
-    BAD("Xấu", 0),
-}

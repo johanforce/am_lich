@@ -582,7 +582,7 @@ object SaoXauHelper {
     private val danNHat = listOf(
         "Ngọ", "Ngọ", "Ngọ", "Dậu", "Dậu", "Dậu", "Tý", "Tý", "Tý", "Mão", "Mão", "Mão"
     )
-    private val thanhLongHoangDao = listOf(
+    val thanhLongHoangDao = listOf(
         "Tý", "Dần", "Thìn", "Ngọ", "Thân", "Tuất", "Tý", "Dần", "Thìn", "Ngọ", "Thân", "Tuất"
     )
     private val minhDuong = listOf(

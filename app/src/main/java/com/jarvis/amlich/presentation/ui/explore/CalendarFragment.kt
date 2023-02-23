@@ -2,8 +2,10 @@ package com.jarvis.amlich.presentation.ui.explore
 
 import android.annotation.SuppressLint
 import android.view.View
+import androidx.core.view.isVisible
 import com.jarvis.amlich.R
 import com.jarvis.amlich.base.BaseFragment
+import com.jarvis.amlich.common.core.StatusDayEnum
 import com.jarvis.amlich.common.extension.click
 import com.jarvis.amlich.common.utils.setTextColorRes
 import com.jarvis.amlich.databinding.ExampleCalendarDayBinding
@@ -14,8 +16,6 @@ import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
-import com.kizitonwose.calendarview.utils.next
-import com.kizitonwose.calendarview.utils.previous
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -33,7 +33,7 @@ class CalendarFragment :
     private var lastDayOfSelectedMonth: LocalDate? = null
     private var firstDayOfSelectedMonth: LocalDate? = null
 
-    private var selectedDate: LocalDate? = null
+    private var selectedDate: LocalDate? = LocalDate.now()
     private val today = LocalDate.now()
     private val currentMonth = YearMonth.now()
 
@@ -49,10 +49,6 @@ class CalendarFragment :
     }
 
     private fun initCalender() {
-//        if (!firstTime) {
-//            return
-//        }
-//        firstTime = false
         val daysOfWeek = DayOfWeek.values()
         viewBD.cvMonth.setup(
             currentMonth.minusYears(1500),
@@ -68,12 +64,11 @@ class CalendarFragment :
             val exLunarDay = ExampleCalendarDayBinding.bind(view).exLunarDay
             val exSonarDay = ExampleCalendarDayBinding.bind(view).exSonarDay
             val bgDay = ExampleCalendarDayBinding.bind(view).bgDay
+            val dot = ExampleCalendarDayBinding.bind(view).icDot
 
             init {
                 view.setOnClickListener {
                     if (selectedDate == day.date) {
-//                        selectedDate = null
-
                         viewBD.cvMonth.notifyDayChanged(day)
                     } else {
                         val oldDate = selectedDate
@@ -83,10 +78,9 @@ class CalendarFragment :
 
                     }
                     viewBD.cvMonth.notifyDayChanged(day)
-
-                    val dayData = day.date
-                    viewBD.viewAmLich.initData(dayData)
-                    viewBD.layoutTitle.tvActivities.text = viewModel.getTetAmLichName(dayData)
+                    viewBD.viewAmLich.initData(selectedDate ?: LocalDate.now())
+                    viewBD.layoutTitle.tvActivities.text =
+                        viewModel.getTetAmLichName(selectedDate ?: LocalDate.now())
                 }
             }
         }
@@ -100,6 +94,7 @@ class CalendarFragment :
                 val textView = container.exSonarDay
                 val exLunarDay = container.exLunarDay
                 val bgDay = container.bgDay
+                val dot = container.dot
                 textView.text = day.date.dayOfMonth.toString()
 
                 val dayData = day.date
@@ -115,19 +110,12 @@ class CalendarFragment :
                 }
 
                 when (day.date) {
-                    selectedDate -> {
-                        bgDay.setBackgroundResource(R.drawable.bg_boder_pri_3)
-                    }
-
                     today -> {
                         textView.setTextColorRes(R.color.pri_4)
                         bgDay.setBackgroundResource(R.drawable.bg_boder_pri_2)
-
-                        if (firstTime) {
-                            viewBD.viewAmLich.initData(today)
-                            viewBD.layoutTitle.tvActivities.text = viewModel.getTetAmLichName(today)
-                        }
-                        firstTime = false
+                    }
+                    selectedDate -> {
+                        bgDay.setBackgroundResource(R.drawable.bg_boder_pri_3)
                     }
                     else -> {
                         bgDay.setBackgroundResource(R.color.transparent)
@@ -136,6 +124,21 @@ class CalendarFragment :
                 }
                 if (viewModel.isTetAmLich(dayData)) exLunarDay.setTextColorRes(R.color.bitter_sweat)
                 if (viewModel.isSunDayOrSaturday(dayData)) textView.setTextColorRes(R.color.bitter_sweat)
+
+                when {
+                    viewModel.statusDay(dayData) == StatusDayEnum.VERY_GOOD.value -> {
+                        dot.setImageResource(R.drawable.bg_thanh_long_hoang_dao)
+                    }
+                    viewModel.statusDay(dayData) == StatusDayEnum.GOOD.value -> {
+                        dot.setImageResource(R.drawable.bg_hoang_dao)
+                    }
+                    viewModel.statusDay(dayData) == StatusDayEnum.BAD.value -> {
+                        dot.setImageResource(R.drawable.bg_hac_dao)
+                    }
+                    else -> {
+                        dot.isVisible = false
+                    }
+                }
             }
         }
     }
@@ -143,18 +146,20 @@ class CalendarFragment :
     private fun executeTitleCalendar() {
 
         viewBD.cvMonth.monthScrollListener = { month ->
-            clearSelected()
-//            selectedDate = null
             displayMonth = month.yearMonth
             firstDayOfSelectedMonth = month.yearMonth.atDay(1)
             lastDayOfSelectedMonth = month.yearMonth.atEndOfMonth()
-            val title = "Tháng " + "${month.month}, ${month.year}"
+            val title = getString(R.string.time_title, "${month.month}, ${month.year}")
             viewBD.layoutTitle.tvCalendar.text = title
-//            viewBD.layoutTitle.btCalendarNext.isEnabled = month.yearMonth != currentMonth
+            selectedDate = LocalDate.of(month.year, month.month,  1)
+            viewBD.cvMonth.notifyDateChanged(selectedDate ?: LocalDate.now())
 
+            viewBD.viewAmLich.initData(selectedDate ?: LocalDate.now())
+            viewBD.layoutTitle.tvActivities.text =
+                viewModel.getTetAmLichName(selectedDate ?: LocalDate.now())
         }
 
-        viewBD.layoutTitle.tvCalendar.click {
+        viewBD.layoutTitle.viewCalendar.click {
             val pd = DialogTimePicker()
             pd.setListener { p0, year, month, p3 ->
                 val c = YearMonth.of(year, month)
@@ -166,26 +171,18 @@ class CalendarFragment :
     }
 
     private fun executePreviousMonth() {
-        viewBD.layoutTitle.btCalendarBack.setOnClickListener {
-            viewBD.cvMonth.findFirstVisibleMonth()?.let {
-                viewBD.cvMonth.smoothScrollToMonth(it.yearMonth.previous)
-            }
-        }
+//        viewBD.layoutTitle.btCalendarBack.setOnClickListener {
+//            viewBD.cvMonth.findFirstVisibleMonth()?.let {
+//                viewBD.cvMonth.smoothScrollToMonth(it.yearMonth.previous)
+//            }
+//        }
     }
 
     private fun executeNextMonth() {
-        viewBD.layoutTitle.btCalendarNext.setOnClickListener {
-            viewBD.cvMonth.findFirstVisibleMonth()?.let {
-                viewBD.cvMonth.smoothScrollToMonth(it.yearMonth.next)
-            }
-        }
-    }
-
-    private fun clearSelected() {
-        if (selectedDate != null) {
-            val tempoSelectedDate = selectedDate
-//            selectedDate = null
-            viewBD.cvMonth.notifyDateChanged(tempoSelectedDate!!)
-        }
+//        viewBD.layoutTitle.btCalendarNext.setOnClickListener {
+//            viewBD.cvMonth.findFirstVisibleMonth()?.let {
+//                viewBD.cvMonth.smoothScrollToMonth(it.yearMonth.next)
+//            }
+//        }
     }
 }
