@@ -61,7 +61,7 @@ object LunarCoreHelper {
 
     // 12 Earthly Branches
     // Vietnamese Earthly Branches (or "Địa Chi")
-    private val CHI = arrayOf(
+    val CHI = arrayOf(
         ChiEnum.TY.valueStr,
         ChiEnum.SUU.valueStr,
         ChiEnum.DAN.valueStr,

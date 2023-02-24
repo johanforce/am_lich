@@ -59,3 +59,24 @@ enum class StatusDayEnum(var valueStr: String, val value: Int) {
     BAD("Hắc Đạo", 2),
     NORMAL("Bình Thường", 3),
 }
+
+enum class CungEnum(var tenCung: String, var tenHanh: String) {
+    // action card not DONE
+    TON("Tốn", "Mộc"),
+    CAFN("Càn", "Kim"),
+    DOAI("Đoài", "Kim"),
+    CHAN("Chấn", "Thủy"),
+    KHAM("Khảm", "Thủy"),
+    CASN("Cấn", "Thổ"),
+    KHON("Khôn", "Thổ"),
+    LY("Ly", "Hỏa"),
+}
+
+enum class HanhEnum(var valueStr: String, val value: Int, val cucName: String, val pointCuc: Int) {
+    // action card not DONE
+    MOC("Mộc", 0, "Mộc Tam Cục", 3),
+    KIM("Kim", 1, "Kim Tứ Cục", 4),
+    THUY("Thủy", 2, "Thủy Nhị Cục", 2),
+    HOA("Hoả", 3, "Hỏa Lục Cục", 6),
+    THO("Thổ", 4, "Thổ Ngũ Cục", 5)
+}
