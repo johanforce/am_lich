@@ -1,19 +1,24 @@
-package com.jarvis.amlich.presentation.ui.explore
+@file:Suppress("DEPRECATION")
+
+package com.jarvis.amlich.presentation.ui.calendar
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.View
 import androidx.core.view.isVisible
 import com.jarvis.amlich.R
 import com.jarvis.amlich.base.BaseFragment
+import com.jarvis.amlich.common.Constant
 import com.jarvis.amlich.common.core.StatusDayEnum
-import com.jarvis.amlich.common.core.tuvi.LaSoTuViHelper
 import com.jarvis.amlich.common.extension.click
 import com.jarvis.amlich.common.utils.setTextColorRes
 import com.jarvis.amlich.databinding.ExampleCalendarDayBinding
 import com.jarvis.amlich.databinding.FragmentCalendarBinding
+import com.jarvis.amlich.presentation.ui.calendar.notify.AddNoteActivity
 import com.jarvis.amlich.presentation.ui.main.MainActivity
 import com.jarvis.amlich.presentation.ui.widget.DialogTimePicker
 import com.kizitonwose.calendarview.model.CalendarDay
+import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
 import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.ViewContainer
@@ -23,16 +28,15 @@ import java.time.LocalDate
 import java.time.YearMonth
 import java.util.*
 
-class CalendarFragment :
+class CalendarFragment(nothing: Nothing?) :
     BaseFragment<FragmentCalendarBinding, CalendarViewModel>(FragmentCalendarBinding::inflate) {
 
     override val viewModel: CalendarViewModel by viewModel()
 
-    private var firstTime: Boolean = true
     private var displayMonth: YearMonth = YearMonth.now()
-    private var diaryActivity: MainActivity? = null
-    private var lastDayOfSelectedMonth: LocalDate? = null
-    private var firstDayOfSelectedMonth: LocalDate? = null
+    private var diaryActivity: MainActivity? = nothing
+    private var lastDayOfSelectedMonth: LocalDate? = nothing
+    private var firstDayOfSelectedMonth: LocalDate? = nothing
 
     private var selectedDate: LocalDate? = LocalDate.now()
     private val today = LocalDate.now()
@@ -44,14 +48,17 @@ class CalendarFragment :
             return
         }
         initCalender()
-        executePreviousMonth()
-        executeNextMonth()
         executeTitleCalendar()
-    }
 
-    override fun onResume() {
-        super.onResume()
-        println((LaSoTuViHelper.getDataCung("Tỵ", 23, 5, "Kỷ")))
+        viewBD.layoutTitle.ivAddNote.click {
+            val calendar = Calendar.getInstance()
+            calendar.set(Calendar.DAY_OF_MONTH, selectedDate?.dayOfMonth ?: 1)
+            calendar.set(Calendar.MONTH, (selectedDate?.monthValue ?: 0) - 1)
+            calendar.set(Calendar.YEAR, selectedDate?.year ?: 1970)
+            val intent = Intent(activity, AddNoteActivity::class.java)
+            intent.putExtra(Constant.TIME_NOTE, calendar.timeInMillis)
+            activity?.startActivity(intent)
+        }
     }
 
     private fun initCalender() {
@@ -152,12 +159,15 @@ class CalendarFragment :
     private fun executeTitleCalendar() {
 
         viewBD.cvMonth.monthScrollListener = { month ->
+            viewBD.cvMonth.notifyDateChanged(selectedDate ?: LocalDate.now())
+
             displayMonth = month.yearMonth
             firstDayOfSelectedMonth = month.yearMonth.atDay(1)
             lastDayOfSelectedMonth = month.yearMonth.atEndOfMonth()
             val title = getString(R.string.time_title, "${month.month}, ${month.year}")
             viewBD.layoutTitle.tvCalendar.text = title
-            selectedDate = LocalDate.of(month.year, month.month,  1)
+
+            selectedDate = setDayOfMonth(month)
             viewBD.cvMonth.notifyDateChanged(selectedDate ?: LocalDate.now())
 
             viewBD.viewAmLich.initData(selectedDate ?: LocalDate.now())
@@ -167,7 +177,7 @@ class CalendarFragment :
 
         viewBD.layoutTitle.viewCalendar.click {
             val pd = DialogTimePicker()
-            pd.setListener { p0, year, month, p3 ->
+            pd.setListener { _, year, month, _ ->
                 val c = YearMonth.of(year, month)
                 selectedDate = c.atDay(1)
                 viewBD.cvMonth.scrollToMonth(c)
@@ -176,19 +186,21 @@ class CalendarFragment :
         }
     }
 
-    private fun executePreviousMonth() {
-//        viewBD.layoutTitle.btCalendarBack.setOnClickListener {
-//            viewBD.cvMonth.findFirstVisibleMonth()?.let {
-//                viewBD.cvMonth.smoothScrollToMonth(it.yearMonth.previous)
-//            }
-//        }
-    }
+    private fun setDayOfMonth(month: CalendarMonth): LocalDate {
+        val calendarSelectDay = Calendar.getInstance()
+        calendarSelectDay.set(Calendar.YEAR, selectedDate?.year ?: 2023)
+        calendarSelectDay.set(Calendar.MONTH, selectedDate?.month?.value ?: 12)
+        calendarSelectDay.set(Calendar.YEAR, selectedDate?.dayOfMonth ?: 1)
 
-    private fun executeNextMonth() {
-//        viewBD.layoutTitle.btCalendarNext.setOnClickListener {
-//            viewBD.cvMonth.findFirstVisibleMonth()?.let {
-//                viewBD.cvMonth.smoothScrollToMonth(it.yearMonth.next)
-//            }
-//        }
+        val calendarScrollDay = Calendar.getInstance()
+        calendarScrollDay.set(Calendar.YEAR, month.year)
+        calendarScrollDay.set(Calendar.MONTH, month.month)
+        calendarScrollDay.set(Calendar.YEAR, today?.dayOfMonth ?: 1)
+
+        return if (calendarScrollDay.timeInMillis > calendarSelectDay.timeInMillis) {
+            LocalDate.of(month.year, month.month, selectedDate?.plusMonths(1)?.dayOfMonth ?: 1)
+        } else {
+            LocalDate.of(month.year, month.month, selectedDate?.minusMonths(1)?.dayOfMonth ?: 1)
+        }
     }
 }

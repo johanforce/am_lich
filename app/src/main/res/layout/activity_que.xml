@@ -5,6 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.jarvis.amlich.presentation.ui.widget.ViewToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:toolbarTitle="@string/tv_que_bac_de" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerQue"
         android:layout_width="0dp"
@@ -15,7 +22,7 @@
         app:layout_constraintBottom_toTopOf="@+id/progressLoadMore"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:spanCount="3"
         tools:listitem="@layout/item_que" />
 

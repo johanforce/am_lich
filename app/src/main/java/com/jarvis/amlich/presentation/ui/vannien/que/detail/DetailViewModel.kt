@@ -1,4 +1,4 @@
-package com.jarvis.amlich.presentation.ui.detail
+package com.jarvis.amlich.presentation.ui.vannien.que.detail
 
 import com.jarvis.amlich.base.BaseViewModel
 import com.jarvis.amlich.common.utils.SingleLiveData

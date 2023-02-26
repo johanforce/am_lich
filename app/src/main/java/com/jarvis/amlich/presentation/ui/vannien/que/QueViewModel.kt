@@ -1,4 +1,4 @@
-package com.jarvis.amlich.presentation.ui.home
+package com.jarvis.amlich.presentation.ui.vannien.que
 
 import com.jarvis.amlich.base.BaseViewModel
 import com.jarvis.amlich.common.utils.SingleLiveData
@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.koin.core.component.inject
 
-class HomeViewModel : BaseViewModel() {
+class QueViewModel : BaseViewModel() {
     private val queUseCase: QueUseCase by inject()
 
     val listQueLiveData = SingleLiveData<List<QueModel>>()

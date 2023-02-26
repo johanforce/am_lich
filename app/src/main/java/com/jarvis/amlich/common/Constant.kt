@@ -4,4 +4,5 @@ object Constant {
     val KEY_CALENDAR = 0
     val KEY_QUE = 1
     val DETAIL = "DETAIL"
+    val TIME_NOTE = "TIME_NOTE"
 }

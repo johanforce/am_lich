@@ -37,7 +37,7 @@ class DialogTimePicker : DialogFragment() {
         builder.setView(dialog) // Add action buttons
             .setPositiveButton(
                 R.string.ok
-            ) { dialog, id ->
+            ) { _, _ ->
                 listener!!.onDateSet(
                     null,
                     yearPicker.value,
@@ -47,7 +47,7 @@ class DialogTimePicker : DialogFragment() {
             }
             .setNegativeButton(
                 R.string.cancel
-            ) { dialog, id ->
+            ) { _, _ ->
                 this.dialog?.cancel()
             }
         return builder.create()

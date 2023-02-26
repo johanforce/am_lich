@@ -18,4 +18,6 @@ val useCaseModule = module {
     single { ThatVatUseCase() }
     single { TuoiMangUseCase() }
     single { VanKhanUseCase() }
+    single { TuviUseCase() }
+    single { InsertNoteUseCase() }
 }

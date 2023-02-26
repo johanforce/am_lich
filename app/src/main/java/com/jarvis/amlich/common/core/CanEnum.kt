@@ -80,3 +80,12 @@ enum class HanhEnum(var valueStr: String, val value: Int, val cucName: String, v
     HOA("Hoả", 3, "Hỏa Lục Cục", 6),
     THO("Thổ", 4, "Thổ Ngũ Cục", 5)
 }
+
+enum class AmDuongEnum(var valueStr: String, val value: Int) {
+    // action card not DONE
+    NAM_DUONG("Nam Dương", 0),
+    NAM_AM("Nam Âm", 1),
+    NU_DUONG("Nữ Dương", 2),
+    NU_AM("Nữ Âm", 3),
+}
+

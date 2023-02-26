@@ -6,8 +6,16 @@ abstract class BaseUseCase<Output, in Input> : KoinComponent {
     abstract suspend operator fun invoke(input: Input): Output
 }
 
+abstract class NoResultBaseUseCase<in Input> : KoinComponent {
+    abstract suspend operator fun invoke(input: Input)
+}
+
 abstract class BaseUseCaseInt<Output, in Input> : KoinComponent {
     abstract suspend operator fun invoke(input: Int): Output
+}
+
+abstract class BaseUseCaseString<Output, in Input> : KoinComponent {
+    abstract suspend operator fun invoke(input: String): Output
 }
 
 abstract class NoParamUseCase<Output> : BaseUseCase<Output, Empty>() {

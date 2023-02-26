@@ -5,7 +5,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/bg_01"
+        android:background="?android:selectableItemBackground">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSoQue"

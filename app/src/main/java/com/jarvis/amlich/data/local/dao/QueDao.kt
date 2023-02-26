@@ -1,8 +1,9 @@
 package com.jarvis.amlich.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Query
+import androidx.room.*
+import com.jarvis.amlich.common.core.tuvi.GiaiDoanTuVi
 import com.jarvis.amlich.data.entity.*
+import com.jarvis.amlich.domain.model.TuViModel
 
 @Dao
 interface QueDao {
@@ -48,4 +49,17 @@ interface QueDao {
 
     @Query("SELECT * FROM van_khan WHERE id = :id")
     suspend fun getAllVanKhanId(id: Int): VanKhanEntity
+
+    @Query("SELECT * FROM tu_vi WHERE cung = :cung")
+    suspend fun getGiaiDoanTuViTheoCung(cung: String): List<TuViEntity>
+
+    @Query("SELECT * FROM note WHERE date_time >= :startDate AND date_time <= :endDate")
+    suspend fun getNoteInTime(startDate: Long, endDate: Long): List<NoteEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNote(note: NoteEntity)
+
+    @Delete
+    suspend fun deleteNote(note: NoteEntity)
+
 }

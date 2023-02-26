@@ -63,4 +63,12 @@ class QueRepositoryImpl(
     override suspend fun getVanKhanId(id: Int): VanKhanModel {
         return database.queDao().getAllVanKhanId(id).toModel()
     }
+
+    override suspend fun getGiaiDoanTuViTheoCung(cung: String): List<TuViModel> {
+        return database.queDao().getGiaiDoanTuViTheoCung(cung).map { it.toModel() }
+    }
+
+    override suspend fun insertNote(note: NoteModel) {
+        return database.queDao().insertNote(note.toEntity())
+    }
 }

@@ -1,9 +1,8 @@
 package com.jarvis.amlich.common.core.tuvi
 
-import com.jarvis.amlich.common.core.CanEnum
-import com.jarvis.amlich.common.core.ChiEnum
-import com.jarvis.amlich.common.core.HanhEnum
-import com.jarvis.amlich.common.core.LunarCoreHelper
+import com.jarvis.amlich.common.core.*
+import com.jarvis.amlich.common.core.LunarCoreHelper.CAN
+import com.jarvis.amlich.common.core.LunarCoreHelper.CHI
 
 object LaSoTuViHelper {
     val banMenh = listOf(
@@ -201,9 +200,9 @@ object LaSoTuViHelper {
 //    val liemTrinh = listOf("V", "Đ", "V", "H", "M", "H", "V", "Đ", "V", "H", "M", "H")
 //    val thienDong = listOf("V", "H", "M", "Đ", "H", "Đ", "H", "H", "M", "H", "H", "Đ")
 //    val vuKhuc = listOf("V", "M", "V", "Đ", "M", "H", "V", "M", "V", "Đ", "M", "H")
-//    val x = listOf("H", "Đ", "V", "V", "V", "M", "M", "Đ", "H", "H", "H", "H")
-//    val x = listOf("Đ", "Đ", "H", "M", "M", "V", "Đ", "Đ", "V", "M", "M", "H")
-//    val x = listOf("V", "Đ", "H", "H", "H", "H", "H", "Đ", "V", "M", "M", "M")
+//    val thaiDuong = listOf("H", "Đ", "V", "V", "V", "M", "M", "Đ", "H", "H", "H", "H")
+//    val thienCo = listOf("Đ", "Đ", "H", "M", "M", "V", "Đ", "Đ", "V", "M", "M", "H")
+//    val thaiAm = listOf("V", "Đ", "H", "H", "H", "H", "H", "Đ", "V", "M", "M", "M")
 //    val x = listOf("H", "M", "Đ", "H", "V", "H", "H", "M", "Đ", "H", "V", "H")
 //    val x = listOf("V", "H", "V", "M", "H", "H", "V", "H", "Đ", "M", "H", "Đ")
 //    val x = listOf("V", "Đ", "M", "H", "V", "Đ", "V", "Đ", "M", "H", "V", "Đ")
@@ -417,7 +416,7 @@ object LaSoTuViHelper {
         AnSaoChinhTinh(
             "Dần",
             listOf(
-                Pair("Tý", listOf("Tử Vi", "Phá Quân")),
+                Pair("Tý", listOf("Phá Quân")),
                 Pair("Sửu", listOf("Thiên Cơ")),
                 Pair("Dần", listOf("Tử Vi", "Thiên Phủ")),
                 Pair("Mão", listOf("Thái Âm")),
@@ -448,24 +447,6 @@ object LaSoTuViHelper {
                 Pair("Hợi", listOf("Phá Quân", "Vũ Khúc"))
             )
         ),
-        AnSaoChinhTinh(
-            "Mão",
-            listOf(
-                Pair("Tý", listOf("Thái Dương")),
-                Pair("Sửu", listOf("Thiên Phủ")),
-                Pair("Dần", listOf("Thiên Cơ", "Thái Âm")),
-                Pair("Mão", listOf("Tử Vi", "Tham Lang")),
-                Pair("Thìn", listOf("Cự Môn")),
-                Pair("Tỵ", listOf("Thiên Tướng")),
-                Pair("Ngọ", listOf("Thiên Lương")),
-                Pair("Mùi", listOf("Liêm Trinh", "Thất Sát")),
-                Pair("Thân", listOf("Vô Chính Diệu")),
-                Pair("Dậu", listOf("Vô Chính Diệu")),
-                Pair("Tuất", listOf("Thiên Đồng")),
-                Pair("Hợi", listOf("Phá Quân", "Vũ Khúc"))
-            )
-        ),
-
         AnSaoChinhTinh(
             "Thìn",
             listOf(
@@ -606,6 +587,300 @@ object LaSoTuViHelper {
         )
     )
 
+    private val listStarExtraForHour = listOf(
+        AnSaoPhuTinhTheoGio(
+            "Văn Xương",
+            listOf(
+                "Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý", "Hợi"
+            )
+        ),
+        AnSaoPhuTinhTheoGio(
+            "Văn Khúc",
+            listOf(
+                "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão"
+            )
+        ),
+        AnSaoPhuTinhTheoGio(
+            "Thai Phụ",
+            listOf(
+                "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ"
+            )
+        ),
+        AnSaoPhuTinhTheoGio(
+            "Phong Cáo",
+            listOf(
+                "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu"
+            )
+        ),
+        AnSaoPhuTinhTheoGio(
+            "Địa Không",
+            listOf(
+                "Hợi", "Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý"
+            )
+        ),
+        AnSaoPhuTinhTheoGio(
+            "Địa Kiếp",
+            listOf(
+                "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất"
+            )
+        ),
+    )
+
+    private val listStarExtraForMonth = listOf(
+        AnSaoPhuTinhTheoThang(
+            "Hữu Bật",
+            listOf(
+                "Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý", "Hợi"
+            )
+        ),
+        AnSaoPhuTinhTheoThang(
+            "Tả Phù",
+            listOf(
+                "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão"
+            )
+        ),
+        AnSaoPhuTinhTheoThang(
+            "Thiên Giải",
+            listOf(
+                "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi"
+            )
+        ),
+        AnSaoPhuTinhTheoThang(
+            "Thiên Y",
+            listOf(
+                "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý"
+            )
+        ),
+        AnSaoPhuTinhTheoThang(
+            "Thiên Riêu",
+            listOf(
+                "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý"
+            )
+        ),
+        AnSaoPhuTinhTheoThang(
+            "Địa Kiếp",
+            listOf(
+                "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân"
+            )
+        ),
+    )
+
+    private val listStarExtraForChiYear = listOf(
+        AnSaoPhuTinhTheoChiNam(
+            "Thiên Mã",
+            listOf(
+                "Dần", "Hợi", "Thân", "Tỵ", "Dần", "Hợi", "Thân", "Tỵ", "Dần", "Hợi", "Thân", "Tỵ"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Hoa Cái",
+            listOf(
+                "Thìn",
+                "Sửu",
+                "Tuất",
+                "Mùi",
+                "Thìn",
+                "Sửu",
+                "Tuất",
+                "Mùi",
+                "Thìn",
+                "Sửu",
+                "Tuất",
+                "Mùi"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Kiếp Sát",
+            listOf(
+                "Tỵ", "Dần", "Hợi", "Thân", "Tỵ", "Dần", "Hợi", "Thân", "Tỵ", "Dần", "Hợi", "Thân"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Đào Hoa",
+            listOf(
+                "Dậu", "Ngọ", "Mão", "Tý", "Dậu", "Ngọ", "Mão", "Tý", "Dậu", "Ngọ", "Mão", "Tý"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Phá Toái",
+            listOf(
+                "Tỵ", "Sửu", "Dậu", "Tỵ", "Sửu", "Dậu", "Tỵ", "Sửu", "Dậu", "Tỵ", "Sửu", "Dậu"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Cô Thần",
+            listOf(
+                "Dần", "Dần", "Tỵ", "Tỵ", "Tỵ", "Thân", "Thân", "Thân", "Hợi", "Hợi", "Hợi", "Dần"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Quả Tú",
+            listOf(
+                "Tuất",
+                "Tuất",
+                "Sửu",
+                "Sửu",
+                "Sửu",
+                "Thìn",
+                "Thìn",
+                "Thìn",
+                "Mùi",
+                "Mùi",
+                "Mùi",
+                "Tuất"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Thiên Không",
+            listOf(
+                "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Thiên Khốc",
+            listOf(
+                "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý", "Hợi", "Tuất", "Dậu", "Thân", "Mùi"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Thiên Hư",
+            listOf(
+                "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Thiên Đức",
+            listOf(
+                "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Nguyệt Đức",
+            listOf(
+                "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Hồng Loan",
+            listOf(
+                "Mão", "Dần", "Sửu", "Tý", "Hợi", "Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Thiên Hỷ",
+            listOf(
+                "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý", "Hợi", "Tuất"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Long Trì",
+            listOf(
+                "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Phượng Các",
+            listOf(
+                "Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý", "Hợi"
+            )
+        ),
+        AnSaoPhuTinhTheoChiNam(
+            "Giải Thần",
+            listOf(
+                "Tuất", "Dậu", "Thân", "Mùi", "Ngọ", "Tỵ", "Thìn", "Mão", "Dần", "Sửu", "Tý", "Hợi"
+            )
+        ),
+    )
+
+    private val listStarExtraForCanYear = listOf(
+        AnSaoPhuTinhTheoCanNam(
+            "Đà La",
+            listOf(
+                "Sửu", "Dần", "Thìn", "Tỵ", "Thìn", "Tỵ", "Mùi", "Thân", "Tuất", "Hợi"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Kinh Dương",
+            listOf(
+                "Mão", "Thìn", "Ngọ", "Mùi", "Ngọ", "Mùi", "Dậu", "Tuất", "Tý", "Sửu"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Lộc Tồn",
+            listOf(
+                "Dần", "Mão", "Tỵ", "Ngọ", "Tỵ", "Ngọ", "Thân", "Dậu", "Hợi", "Tý"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Quốc An",
+            listOf(
+                "Tuất", "Hợi", "Sửu", "Dần", "Sửu", "Dần", "Thìn", "Tỵ", "Mùi", "Thân"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Đường Phù",
+            listOf(
+                "Mùi", "Thân", "Tuất", "Hợi", "Tuất", "Hợi", "Sửu", "Dần", "Thìn", "Tỵ"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Văn Tinh",
+            listOf(
+                "Tỵ", "Ngọ", "Thân", "Dậu", "Thân", "Dậu", "Hợi", "Tí", "Dậu", "Mão"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Thiên Khôi",
+            listOf(
+                "Sửu", "Tý", "Hợi", "Hợi", "Sửu", "Tý", "Ngọ", "Ngọ", "Mão", "Mão"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Thiên Việt",
+            listOf(
+                "Mùi", "Thân", "Dậu", "Dậu", "Mùi", "Thân", "Dần", "Dần", "Tỵ", "Tỵ"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Thiên Quan",
+            listOf(
+                "Mùi", "Thìn", "Tỵ", "Dần", "Mão", "Dậu", "Hợi", "Dậu", "Tuất", "Ngọ"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Thiên Phúc",
+            listOf(
+                "Dậu", "Thân", "Tý", "Hợi", "Mão", "Dần", "Ngọ", "Tỵ", "Ngọ", "Tỵ"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Lưu Hà",
+            listOf(
+                "Dậu", "Tuất", "Mùi", "Thân", "Tý", "Ngọ", "Mão", "Thìn", "Hợi", "Dần"
+            )
+        ),
+        AnSaoPhuTinhTheoCanNam(
+            "Thiên Trù",
+            listOf(
+                "Tỵ", "Ngọ", "Tý", "Tỵ", "Ngọ", "Thân", "Dần", "Ngọ", "Dậu", "Hợi"
+            )
+        ),
+    )
+
+    private val listThaiTue = listOf(
+        "Thái Tuế",
+        "Thiếu Dương",
+        "Tang Môn",
+        "THiếu Âm",
+        "Quan Phủ",
+        "Tử Phù",
+        "Tuế Phá",
+        "Long Đức",
+        "Bạch Hổ",
+        "Phúc Đức",
+        "Điếu Khách",
+        "Trực Phù"
+    )
 
     private fun getAnSaoTuVi(
         hourLunar: String,
@@ -640,18 +915,18 @@ object LaSoTuViHelper {
         val cungHuynhDe = listChi[(positionCungMenh + 11) % 12]
 
         return listOf(
-            Pair(menhThan.menh, "Cung Mệnh"),
-            Pair(cungPhuMau, "Cung Phụ Mẫu"),
-            Pair(cungPhucDuc, "Cung Phúc Đức"),
-            Pair(cungDienTrach, "Cung Điền Trạch"),
-            Pair(cungQuanLoc, "Cung Quan Lộc"),
+            Pair(menhThan.menh, "Mệnh"),
+            Pair(cungPhuMau, "Phụ Mẫu"),
+            Pair(cungPhucDuc, "Phúc Đức"),
+            Pair(cungDienTrach, "Điền Trạch"),
+            Pair(cungQuanLoc, "Quan Lộc"),
             Pair(cungNoboc, "Nô Bộc"),
             Pair(cungThienDi, "Thiên Di"),
             Pair(cungTatAch, "Tật Ách"),
             Pair(cungTaiBach, "Tài Bạch"),
-            Pair(cungTuTuc, "Cung Tử Tức"),
-            Pair(cungTheThiep, "Cung Thê Thiếp"),
-            Pair(cungHuynhDe, "Cung Huynh Đệ")
+            Pair(cungTuTuc, "Tử Tức"),
+            Pair(cungTheThiep, "Thê Thiếp"),
+            Pair(cungHuynhDe, "Huynh Đệ")
         )
     }
 
@@ -659,7 +934,8 @@ object LaSoTuViHelper {
         hourLunar: String,
         dayLunar: Int,
         monthLunar: Int,
-        canYearLunar: String
+        canYearLunar: String,
+        chiYearLunar: String
     ): List<DataCung> {
         val menhGioThang = getMenhThanFromHourLunar(hourLunar, monthLunar)
         val list13CungTuvi = list13CungTuVi(menhGioThang)
@@ -692,15 +968,125 @@ object LaSoTuViHelper {
                         "Tỵ", "Ngọ" -> "Hỏa"
                         else -> "Kim"
                     },
-                    anChinhTinh = listAnSaoChinhTInh.list12cung.first { it.first == item.first }.second,
+                    anChinhTinh = listAnSaoChinhTInh.list12cung.first { it.first == item.first }.second.toMutableList(),
                     isCungThan = item.first == menhGioThang.than
                 )
             )
         }
 
+        val getAnPhuTinhThoGio = getListAnPhuTinhTheoGio(hourLunar)
+        val getAnPhuTinhThoThang = getListAnPhuTinhTheoThang(monthLunar)
+        val getListAnPhuTinhTheoChiNam = getListAnPhuTinhTheoChiNam(chiYearLunar)
+        val getListAnPhuTinhTheoCanNam = getListAnPhuTinhTheoCanNam(canYearLunar)
+
+        list13Cung.map { dataCung ->
+            getAnPhuTinhThoGio.map {
+                if (it.second == dataCung.cungMenhCan) {
+                    dataCung.anPhuTinhTheoGio?.add(it.first)
+                }
+            }
+            getAnPhuTinhThoThang.map {
+                if (it.second == dataCung.cungMenhCan) {
+                    dataCung.anPhuTinhTheoThang?.add(it.first)
+                }
+            }
+            getListAnPhuTinhTheoChiNam.map {
+                if (it.second == dataCung.cungMenhCan) {
+                    dataCung.anPhuTinhTheoChiNam?.add(it.first)
+                }
+            }
+            getListAnPhuTinhTheoCanNam.map {
+                if (it.second == dataCung.cungMenhCan) {
+                    dataCung.anPhuTinhTheoCanNam?.add(it.first)
+                }
+            }
+        }
+
         return list13Cung
     }
 
+    private fun getListAnPhuTinhTheoGio(hourLunar: String): List<Pair<String, String>> {
+        val pos = getPositionChi(hourLunar)
+        val x = mutableListOf<Pair<String, String>>()
+        listStarExtraForHour.map {
+            x.add(Pair(it.nameStarExtraHour, it.cungXuatHien[pos]))
+        }
+        return x
+    }
+
+    private fun getListAnPhuTinhTheoThang(month: Int): List<Pair<String, String>> {
+        val x = mutableListOf<Pair<String, String>>()
+        listStarExtraForMonth.map {
+            x.add(Pair(it.nameStarExtraMonth, it.cungXuatHien[month - 1]))
+        }
+        return x
+    }
+
+    private fun getListAnPhuTinhTheoChiNam(chiYear: String): List<Pair<String, String>> {
+        val pos = getPositionChi(chiYear)
+        val x = mutableListOf<Pair<String, String>>()
+        listStarExtraForChiYear.map {
+            x.add(Pair(it.nameStarExtraChiYear, it.cungXuatHien[pos]))
+        }
+        return x
+    }
+
+    private fun getListAnPhuTinhTheoCanNam(canYear: String): List<Pair<String, String>> {
+        val pos = getPositionCan(canYear)
+        val x = mutableListOf<Pair<String, String>>()
+        listStarExtraForCanYear.map {
+            x.add(Pair(it.nameStarExtraCanYear, it.cungXuatHien[pos]))
+        }
+        return x
+    }
+
+    private fun getPositionChi(chi: String): Int {
+        return CHI.indexOfFirst { it == chi }
+    }
+
+    private fun getPositionCan(can: String): Int {
+        return CAN.indexOfFirst { it == can }
+    }
+
+    fun getGiaiDoanTuVi(dataCung: DataCung): List<GiaiDoanTuVi> {
+        val listViTri = listOf(dataCung.cucMenhCung, "")
+
+        val listAnChinhTinh = dataCung.anChinhTinh + ""
+        val listAnPhuTinh = mutableListOf<String>()
+        dataCung.anPhuTinhTheoCanNam?.let { listAnPhuTinh.addAll(it) }
+        dataCung.anPhuTinhTheoThang?.let { listAnPhuTinh.addAll(it) }
+        dataCung.anPhuTinhTheoChiNam?.let { listAnPhuTinh.addAll(it) }
+        dataCung.anPhuTinhTheoGio?.let { listAnPhuTinh.addAll(it) }
+        listAnPhuTinh.addAll(dataCung.anChinhTinh)
+        listAnPhuTinh.add("")
+
+        val result = mutableListOf<GiaiDoanTuVi>()
+        listAnChinhTinh.map { anChinhTinh ->
+            listAnPhuTinh.map { anPhuTinh ->
+                listViTri.map { it ->
+                    result.add(
+                        GiaiDoanTuVi(
+                            cungMenhCan = it,
+                            tenCung = dataCung.tenCung,
+                            anChinhTinh = anChinhTinh,
+                            anPhuTinh = anPhuTinh,
+                        )
+                    )
+                }
+            }
+        }
+        return result
+    }
+
+    private fun getAmDuongDuongSo(isNam: Boolean, canLunar: String): Int {
+        val listDuongCan = setOf("Giáp", "Bính", "Mậu", "Canh", "Nhâm")
+        return when {
+            canLunar.contains(canLunar) && isNam -> AmDuongEnum.NAM_DUONG.value
+            !canLunar.contains(canLunar) && isNam -> AmDuongEnum.NAM_AM.value
+            canLunar.contains(canLunar) && !isNam -> AmDuongEnum.NU_DUONG.value
+            else -> AmDuongEnum.NU_AM.value
+        }
+    }
 }
 
 data class MenhGioThang(
@@ -735,6 +1121,38 @@ data class DataCung(
     val cungMenhCan: String,
     val tenCung: String,
     val cucMenhCung: String,
-    val anChinhTinh: List<String>,
-    val isCungThan: Boolean? = false
+    val anChinhTinh: MutableList<String>,
+    val isCungThan: Boolean? = false,
+    val anPhuTinhTheoGio: MutableList<String>? = mutableListOf(),
+    val anPhuTinhTheoThang: MutableList<String>? = mutableListOf(),
+    val anPhuTinhTheoCanNam: MutableList<String>? = mutableListOf(),
+    val anPhuTinhTheoChiNam: MutableList<String>? = mutableListOf(),
+)
+
+data class GiaiDoanTuVi(
+    val cungMenhCan: String,
+    val tenCung: String,
+    val anChinhTinh: String,
+    val anPhuTinh: String,
+    val luanGiai: String? = null
+)
+
+data class AnSaoPhuTinhTheoGio(
+    val nameStarExtraHour: String,
+    val cungXuatHien: List<String>,
+)
+
+data class AnSaoPhuTinhTheoThang(
+    val nameStarExtraMonth: String,
+    val cungXuatHien: List<String>,
+)
+
+data class AnSaoPhuTinhTheoChiNam(
+    val nameStarExtraChiYear: String,
+    val cungXuatHien: List<String>,
+)
+
+data class AnSaoPhuTinhTheoCanNam(
+    val nameStarExtraCanYear: String,
+    val cungXuatHien: List<String>,
 )

@@ -158,4 +158,36 @@
     <string name="home_exit">Nhấn lại để thoát</string>
     <string name="ok">OK</string>
     <string name="cancel">Hủy bỏ</string>
+    <string name="saveButton">Lưu</string>
+    <string name="cancelButton">Hủy Bỏ</string>
+    <string name="tv_title_date">Nhập ngày sinh Dương Lịch:</string>
+    <string name="tv_title_note">Nhập tiêu đề:</string>
+    <string name="tv_des_note">Nhập nội dung:</string>
+    <string name="tv_title_day">Ngày:</string>
+    <string name="tv_title_month">Tháng:</string>
+    <string name="tv_title_year">Năm:</string>
+    <string name="tv_title_time">Nhập giờ sinh:</string>
+    <string name="tv_note_time">Hẹn giờ lời nhắc:</string>
+    <string name="tv_xem_tu_vi">Xem Tử Vi</string>
+    <string name="tv_title_sex">Giới Tính:</string>
+    <string name="title_name">Chọn Giới Tính:</string>
+    <string name="don_thu_mot_sao">-Sao %s đơn thủ: %s</string>
+    <string name="dong_cung_sao">-Sao %s cùng với %s đồng cung: %s</string>
+    <string name="dong_cung_tai_sao">-Sao %s cùng với %s đồng cung tại %s: %s</string>
+    <string name="tv_title_tu_vi">Chọn cung bạn muốn xem:</string>
+
+    <string name="tv_menh">Mệnh</string>
+    <string name="tv_phu_mau">Phụ Mẫu</string>
+    <string name="tv_tat_ach">Tật Ách</string>
+    <string name="tv_quan_loc">Quan Lộc</string>
+    <string name="hint_des_note">Nội dung</string>
+    <string name="hint_title_note">Tiêu đề</string>
+    <string name="tv_title_add">Thêm nhắc nhở</string>
+    
+    <string name="tv_switch_day">Đổi Ngày Âm Dương</string>
+    <string name="tv_xong_dat">Xông Đất</string>
+    <string name="tv_cung_menh">Cung Mệnh</string>
+    <string name="tv_tinh_tuoi">Tính Tuổi Âm Dương</string>
+    <string name="tv_que_bac_de">Xin Quẻ Bắc Đế</string>
+    <string name="tv_van_khan">Văn Khấn</string>
 </resources>

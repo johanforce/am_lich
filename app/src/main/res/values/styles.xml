@@ -205,4 +205,32 @@
         <item name="textAllCaps">false</item>
     </style>
 
+    <style name="MyDatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/pri_1</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/ButtonTextPositive</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/ButtonTextNegative</item>
+        <item name="android:backgroundTintMode">@color/white</item>
+    </style>
+
+    <style name="ButtonTextNegative" parent="Widget.AppCompat.Button">
+        <item name="backgroundTint">@color/ink_2</item>
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ButtonTextPositive" parent="Widget.AppCompat.Button">
+        <item name="backgroundTint">@color/pri_1</item>
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+
+    <style name="AlertDialogCustom" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorOnPrimary">@color/pri_1</item>
+        <item name="colorPrimary">@color/bg_01</item>
+        <item name="colorPrimaryVariant">@color/bg_01</item>
+    </style>
+
 </resources>

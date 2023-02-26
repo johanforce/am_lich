@@ -1,4 +1,5 @@
 @file:Suppress("unused")
+
 package com.jarvis.amlich.common.extension
 
 import android.os.SystemClock

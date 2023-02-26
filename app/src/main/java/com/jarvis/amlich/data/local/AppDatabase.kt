@@ -22,6 +22,8 @@ import com.jarvis.amlich.data.local.dao.QueDao
         ThatVatEntity::class,
         TuoiMangEntity::class,
         VanKhanEntity::class,
+        TuViEntity::class,
+        NoteEntity::class
     ],
     version = DATABASE_VERSION,
     exportSchema = false

@@ -2,55 +2,80 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/alabaster"
-        android:orientation="vertical">
+        android:background="@color/bg_01">
 
-        <include
-            android:id="@+id/layout_title"
-            layout="@layout/layout_top_navigation_date_time" />
-
-        <androidx.core.widget.NestedScrollView
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            android:paddingBottom="@dimen/px32">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:elevation="0dp">
 
-            <LinearLayout
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                app:layout_scrollFlags="scroll|enterAlways|snap">
 
-                <com.jarvis.amlich.presentation.ui.widget.CalenderDayLegendView
+                <include
+                    android:id="@+id/layout_title"
+                    layout="@layout/layout_top_navigation_date_time" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/alabaster"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/bg_02"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                android:paddingBottom="@dimen/px32">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white_5" />
+                    android:background="@color/bg_01"
+                    android:orientation="vertical">
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white_5">
-
-                    <com.kizitonwose.calendarview.CalendarView
-                        android:id="@+id/cv_month"
+                    <com.jarvis.amlich.presentation.ui.widget.CalenderDayLegendView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/px16"
-                        android:layout_marginTop="@dimen/px8"
-                        android:layout_marginBottom="@dimen/px12"
-                        app:cv_dayViewResource="@layout/example_calendar_day"
-                        app:cv_orientation="horizontal"
-                        app:cv_scrollMode="paged" />
-                </FrameLayout>
+                        android:layout_height="wrap_content" />
 
-                <com.jarvis.amlich.presentation.ui.widget.DayAmLichView
-                    android:id="@+id/viewAmLich"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <com.kizitonwose.calendarview.CalendarView
+                            android:id="@+id/cv_month"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/px16"
+                            android:layout_marginTop="@dimen/px8"
+                            android:layout_marginBottom="@dimen/px12"
+                            android:background="@color/bg_01"
+                            app:cv_dayViewResource="@layout/example_calendar_day"
+                            app:cv_orientation="horizontal"
+                            app:cv_scrollMode="paged" />
+                    </FrameLayout>
+
+                    <com.jarvis.amlich.presentation.ui.widget.DayAmLichView
+                        android:id="@+id/viewAmLich"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -60,6 +60,7 @@ object NotificationUtils {
      */
     fun createNotification(
         context: Context,
+        title: String?,
         body: String?,
     ): Notification {
         val channelId = App.context.getString(R.string.default_notification_channel)
@@ -83,6 +84,7 @@ object NotificationUtils {
             .setSmallIcon(R.mipmap.ic_launcher)
             // Set the text (second row) of the notification, in a standard notification.
             .setContentText(body)
+            .setContentTitle(title)
             /**
              * Setting this flag will make it so the notification is automatically
              * canceled when the user clicks it in the panel.  The PendingIntent

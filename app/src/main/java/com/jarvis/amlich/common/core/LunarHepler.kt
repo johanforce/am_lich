@@ -27,7 +27,7 @@ object LunarCoreHelper {
      */
     // 10 Heavenly Stems
     // Vietnamese Heavenly Stems (or "Thiên Can")
-    private val CAN = arrayOf(
+    val CAN = arrayOf(
         CanEnum.GIAP.valueStr,
         CanEnum.AT.valueStr,
         CanEnum.BINH.valueStr,
@@ -608,6 +608,23 @@ object LunarCoreHelper {
             ChiEnum.DAU.valueStr -> ": 17h-19h"
             ChiEnum.TUAT.valueStr -> ": 19h-21h"
             else -> ": 21h-23h"
+        }
+    }
+
+    fun convertTimeSolarToLunar(time: Int): String {
+        return when (time) {
+            23, 0 -> ChiEnum.TY.valueStr
+            1, 2 -> ChiEnum.SUU.valueStr
+            3, 4 -> ChiEnum.DAN.valueStr
+            5, 6 -> ChiEnum.MAO.valueStr
+            7, 8 -> ChiEnum.THIN.valueStr
+            9, 10 -> ChiEnum.TI.valueStr
+            11, 12 -> ChiEnum.NGO.valueStr
+            13, 14 -> ChiEnum.MUI.valueStr
+            15, 16 -> ChiEnum.THAN.valueStr
+            17, 18 -> ChiEnum.DAU.valueStr
+            19, 20 -> ChiEnum.TUAT.valueStr
+            else -> ChiEnum.HOI.valueStr
         }
     }
 

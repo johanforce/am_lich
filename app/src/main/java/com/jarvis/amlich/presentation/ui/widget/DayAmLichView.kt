@@ -54,15 +54,6 @@ class DayAmLichView : FrameLayout {
         init(context)
     }
 
-    constructor(
-        context: Context,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-        defStyleRes: Int
-    ) : super(context, attrs, defStyleAttr, defStyleRes) {
-        init(context)
-    }
-
     private fun init(context: Context) {
         val systemService =
             context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -215,13 +206,6 @@ class DayAmLichView : FrameLayout {
         )
     }
 
-    private fun isBadDay(dayData: LocalDate): Boolean {
-        val chiDay = getChiDay(dayData)
-        val lunarDay = getLunarDay(dayData)
-        val chiDays = getUnAccentCanChi(chiDay)
-        return LunarCoreHelper.isBadDay(chiDays, lunarDay[1])
-    }
-
     private fun getHuongTaiHy(dayData: LocalDate): Pair<String, String> {
         val canDay = getCanDay(dayData)
         return HourGoodBadHelper.getTaiHyPhuongHuong(canDay)
@@ -244,7 +228,7 @@ class DayAmLichView : FrameLayout {
         return context.getString(R.string.xuat_hanh_khong_minh_des, result.name, result.meaning)
     }
 
-    fun statusDay(dayData: LocalDate): Int {
+    private fun statusDay(dayData: LocalDate): Int {
         val chiDay = getChiDay(dayData)
         val lunarDay = getLunarDay(dayData)
         val chiDays = getUnAccentCanChi(chiDay)
