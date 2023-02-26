@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import com.jarvis.amlich.R
 import com.jarvis.amlich.base.BaseFragment
 import com.jarvis.amlich.common.core.StatusDayEnum
+import com.jarvis.amlich.common.core.tuvi.LaSoTuViHelper
 import com.jarvis.amlich.common.extension.click
 import com.jarvis.amlich.common.utils.setTextColorRes
 import com.jarvis.amlich.databinding.ExampleCalendarDayBinding
@@ -46,6 +47,11 @@ class CalendarFragment :
         executePreviousMonth()
         executeNextMonth()
         executeTitleCalendar()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        println((LaSoTuViHelper.getDataCung("Tỵ", 23, 5, "Kỷ")))
     }
 
     private fun initCalender() {
