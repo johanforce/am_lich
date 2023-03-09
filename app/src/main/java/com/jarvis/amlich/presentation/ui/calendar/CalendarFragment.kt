@@ -11,6 +11,7 @@ import com.jarvis.amlich.base.BaseFragment
 import com.jarvis.amlich.common.Constant
 import com.jarvis.amlich.common.core.StatusDayEnum
 import com.jarvis.amlich.common.extension.click
+import com.jarvis.amlich.common.extension.convertDate
 import com.jarvis.amlich.common.utils.setTextColorRes
 import com.jarvis.amlich.databinding.ExampleCalendarDayBinding
 import com.jarvis.amlich.databinding.FragmentCalendarBinding
@@ -28,25 +29,27 @@ import java.time.LocalDate
 import java.time.YearMonth
 import java.util.*
 
-class CalendarFragment(nothing: Nothing?) :
+class CalendarFragment :
     BaseFragment<FragmentCalendarBinding, CalendarViewModel>(FragmentCalendarBinding::inflate) {
 
     override val viewModel: CalendarViewModel by viewModel()
 
     private var displayMonth: YearMonth = YearMonth.now()
-    private var diaryActivity: MainActivity? = nothing
-    private var lastDayOfSelectedMonth: LocalDate? = nothing
-    private var firstDayOfSelectedMonth: LocalDate? = nothing
+    private var diaryActivity: MainActivity? = null
+    private var lastDayOfSelectedMonth: LocalDate? = null
+    private var firstDayOfSelectedMonth: LocalDate? = null
 
     private var selectedDate: LocalDate? = LocalDate.now()
     private val today = LocalDate.now()
     private val currentMonth = YearMonth.now()
+    private var bindDay = LocalDate.now()
 
     override fun initData() {
         this.diaryActivity = activity as MainActivity
         if (diaryActivity == null) {
             return
         }
+        viewModel.getNoteInDay(Date())
         initCalender()
         executeTitleCalendar()
 
@@ -78,6 +81,7 @@ class CalendarFragment(nothing: Nothing?) :
             val exSonarDay = ExampleCalendarDayBinding.bind(view).exSonarDay
             val bgDay = ExampleCalendarDayBinding.bind(view).bgDay
             val dot = ExampleCalendarDayBinding.bind(view).icDot
+            val icNote = ExampleCalendarDayBinding.bind(view).icNote
 
             init {
                 view.setOnClickListener {
@@ -92,6 +96,7 @@ class CalendarFragment(nothing: Nothing?) :
                     }
                     viewBD.cvMonth.notifyDayChanged(day)
                     viewBD.viewAmLich.initData(selectedDate ?: LocalDate.now())
+                    viewModel.getNoteInDay(day.date.convertDate())
                     viewBD.layoutTitle.tvActivities.text =
                         viewModel.getTetAmLichName(selectedDate ?: LocalDate.now())
                 }
@@ -108,6 +113,7 @@ class CalendarFragment(nothing: Nothing?) :
                 val exLunarDay = container.exLunarDay
                 val bgDay = container.bgDay
                 val dot = container.dot
+                val icNote = container.icNote
                 textView.text = day.date.dayOfMonth.toString()
 
                 val dayData = day.date
@@ -121,6 +127,8 @@ class CalendarFragment(nothing: Nothing?) :
                     container.rootDay.isEnabled = false
                     container.rootDay.visibility = View.INVISIBLE
                 }
+
+                icNote.isVisible = false
 
                 when (day.date) {
                     today -> {
@@ -201,6 +209,13 @@ class CalendarFragment(nothing: Nothing?) :
             LocalDate.of(month.year, month.month, selectedDate?.plusMonths(1)?.dayOfMonth ?: 1)
         } else {
             LocalDate.of(month.year, month.month, selectedDate?.minusMonths(1)?.dayOfMonth ?: 1)
+        }
+    }
+
+    override fun observeData() {
+        super.observeData()
+        viewModel.noteInDay.observe(viewLifecycleOwner) {
+            viewBD.viewAmLich.getNoteInDay(it)
         }
     }
 }

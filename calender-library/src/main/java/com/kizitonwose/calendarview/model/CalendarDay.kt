@@ -6,7 +6,7 @@ import com.kizitonwose.calendarview.utils.yearMonth
 import java.io.Serializable
 import java.time.LocalDate
 import java.time.YearMonth
-data class CalendarDay internal constructor(val date: LocalDate, val owner: DayOwner) :
+data class CalendarDay(val date: LocalDate, val owner: DayOwner) :
     Comparable<CalendarDay>, Serializable {
 
     val day = date.dayOfMonth

@@ -3,7 +3,7 @@ package com.jarvis.amlich.presentation.ui.vannien.que
 import com.jarvis.amlich.base.BaseViewModel
 import com.jarvis.amlich.common.utils.SingleLiveData
 import com.jarvis.amlich.domain.model.QueModel
-import com.jarvis.amlich.domain.usecase.QueUseCase
+import com.jarvis.amlich.domain.usecase.que.QueUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.koin.core.component.inject

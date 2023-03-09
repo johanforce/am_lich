@@ -81,9 +81,9 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(
     }
 
     private fun observeBase() {
-        viewModel.mLoading.observe(viewLifecycleOwner) { shouldLoading ->
-            (activity as? BaseActivity<*>)?.showLoading(shouldLoading)
-        }
+//        viewModel.mLoading.observe(viewLifecycleOwner) { shouldLoading ->
+//            (activity as? BaseActivity<*>)?.showLoading(shouldLoading)
+//        }
         viewModel.mError.observe(viewLifecycleOwner) { throwable ->
             val activity = activity as? BaseActivity<*> ?: return@observe
             val message = if (throwable is ApiException) {

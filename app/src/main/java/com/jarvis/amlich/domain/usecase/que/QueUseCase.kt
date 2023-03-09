@@ -1,4 +1,4 @@
-package com.jarvis.amlich.domain.usecase
+package com.jarvis.amlich.domain.usecase.que
 
 import com.jarvis.amlich.domain.model.QueModel
 import com.jarvis.amlich.domain.repository.QueRepository

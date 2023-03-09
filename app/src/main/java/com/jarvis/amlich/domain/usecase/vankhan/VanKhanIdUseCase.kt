@@ -1,4 +1,4 @@
-package com.jarvis.amlich.domain.usecase
+package com.jarvis.amlich.domain.usecase.vankhan
 
 import com.jarvis.amlich.domain.model.VanKhanModel
 import com.jarvis.amlich.domain.repository.QueRepository

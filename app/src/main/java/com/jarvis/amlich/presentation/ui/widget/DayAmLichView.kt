@@ -11,6 +11,7 @@ import com.jarvis.amlich.common.core.*
 import com.jarvis.amlich.common.core.LunarCoreHelper.getUnAccentCanChi
 import com.jarvis.amlich.databinding.ItemHourStatusBinding
 import com.jarvis.amlich.databinding.ViewEmptyHistoryBinding
+import com.jarvis.amlich.domain.model.NoteModel
 import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
@@ -239,5 +240,15 @@ class DayAmLichView : FrameLayout {
                 dayData.year
             )
         )
+    }
+
+    fun getNoteInDay(notes: List<NoteModel>?) {
+        binding?.llNote?.isVisible = notes?.isNotEmpty() == true
+        var textNote = ""
+        notes?.mapNotNull {
+            val text = it.title + ": " + it.des
+            textNote = textNote + text + "\n"
+        }
+        binding?.tvNote?.text = textNote
     }
 }

@@ -71,4 +71,8 @@ class QueRepositoryImpl(
     override suspend fun insertNote(note: NoteModel) {
         return database.queDao().insertNote(note.toEntity())
     }
+
+    override suspend fun getNoteInDay(startDate: Long, endDate: Long): List<NoteModel> {
+        return database.queDao().getNoteInTime(startDate, endDate).map { it.toModel() }
+    }
 }

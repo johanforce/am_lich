@@ -1,4 +1,4 @@
-package com.jarvis.amlich.domain.usecase
+package com.jarvis.amlich.domain.usecase.note
 
 import com.jarvis.amlich.domain.model.NoteModel
 import com.jarvis.amlich.domain.model.TuViModel

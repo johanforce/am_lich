@@ -2,7 +2,7 @@ package com.jarvis.amlich.presentation.ui.calendar.notify
 
 import androidx.lifecycle.MutableLiveData
 import com.jarvis.amlich.domain.model.NoteModel
-import com.jarvis.amlich.domain.usecase.InsertNoteUseCase
+import com.jarvis.amlich.domain.usecase.note.InsertNoteUseCase
 import com.jarvis.amlich.presentation.ui.calendar.CalendarViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

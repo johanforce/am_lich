@@ -1,6 +1,5 @@
 package com.jarvis.amlich.domain.repository
 
-import com.jarvis.amlich.data.entity.NoteEntity
 import com.jarvis.amlich.domain.model.*
 
 interface QueRepository {
@@ -34,4 +33,5 @@ interface QueRepository {
     suspend fun getVanKhanId(idQue: Int): VanKhanModel
     suspend fun getGiaiDoanTuViTheoCung(cung: String): List<TuViModel>
     suspend fun insertNote(cung: NoteModel)
+    suspend fun getNoteInDay(startDate: Long, endDate: Long): List<NoteModel>
 }

@@ -3,9 +3,14 @@ package com.jarvis.amlich.presentation.ui.calendar
 import com.jarvis.amlich.base.BaseViewModel
 import com.jarvis.amlich.common.core.LunarCoreHelper
 import com.jarvis.amlich.common.core.TetHelper
+import com.jarvis.amlich.common.extension.endDate
+import com.jarvis.amlich.common.extension.startDate
+import com.jarvis.amlich.common.extension.startMonth
 import com.jarvis.amlich.common.utils.SingleLiveData
+import com.jarvis.amlich.domain.model.NoteModel
 import com.jarvis.amlich.domain.model.TuViModel
 import com.jarvis.amlich.domain.usecase.TuviUseCase
+import com.jarvis.amlich.domain.usecase.note.GetNoteUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.koin.core.component.inject
@@ -16,7 +21,11 @@ import java.util.*
 
 open class CalendarViewModel : BaseViewModel() {
     private val tuViUseCase: TuviUseCase by inject()
+    private val getNoteUseCase: GetNoteUseCase by inject()
+
     val listTuVI = SingleLiveData<List<TuViModel>>()
+    val noteInDay = SingleLiveData<List<NoteModel>>()
+    val noteInMonth = SingleLiveData<List<NoteModel>>()
 
     fun getStringLunarDay(dayData: LocalDate): String {
         val day = getLunarDay(dayData)[0]
@@ -91,6 +100,30 @@ open class CalendarViewModel : BaseViewModel() {
         val chiNamSinh = LunarCoreHelper.getChiInYear(calendar.get(Calendar.YEAR))
         return ThongTinTuVI(chiGioSinh, ngaySinh, thangSinh, canNamSinh, chiNamSinh)
     }
+
+    fun getNoteInDay(date: Date) {
+        executeTask(onExecute = {
+            mLoading.value = true
+            val listNoteInDay = withContext(Dispatchers.IO) {
+                getNoteUseCase.invoke(date.startDate(), date.endDate())
+            }
+            noteInDay.postValue(listNoteInDay)
+            mLoading.value = false
+        })
+    }
+
+    fun getNoteInMonth(date: Date) {
+        executeTask(onExecute = {
+            mLoading.value = true
+            val listNoteInDay = withContext(Dispatchers.IO) {
+                getNoteUseCase.invoke(date.startMonth(), date.endDate())
+            }
+            noteInMonth.postValue(listNoteInDay)
+            mLoading.value = false
+        })
+    }
+
+
 }
 
 data class ThongTinTuVI(
