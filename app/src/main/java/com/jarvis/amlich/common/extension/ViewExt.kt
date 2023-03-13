@@ -3,8 +3,11 @@
 package com.jarvis.amlich.common.extension
 
 import android.os.SystemClock
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.EditText
 import androidx.annotation.AnimRes
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
@@ -71,4 +74,41 @@ fun View.setAnimationResource(@AnimRes resId: Int, duration: Long = 250) {
         }
         startAnimation(animation)
     }
+}
+
+fun EditText.onChange(cb: (String) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        var contentBefore = ""
+        override fun afterTextChanged(s: Editable?) {
+            val contentAfter = s?.toString() ?: ""
+            if (contentAfter != contentBefore) {
+                cb(contentAfter)
+            }
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            contentBefore = s?.toString() ?: ""
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            /*No trigger*/
+        }
+    })
+}
+
+fun EditText.onChangeText(cb: (String) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        var contentBefore = ""
+        override fun afterTextChanged(s: Editable?) {
+            /*No trigger*/
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            contentBefore = s?.toString() ?: ""
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            cb(s.toString())
+        }
+    })
 }

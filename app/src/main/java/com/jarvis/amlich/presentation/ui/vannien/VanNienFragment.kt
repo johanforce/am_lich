@@ -7,6 +7,7 @@ import com.jarvis.amlich.databinding.FragmentVanNienBinding
 import com.jarvis.amlich.presentation.ui.main.MainActivity
 import com.jarvis.amlich.presentation.ui.vannien.que.QueActivity
 import com.jarvis.amlich.presentation.ui.vannien.tuvi.TuViActivity
+import com.jarvis.amlich.presentation.ui.vannien.vankhan.VanKhanActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VanNienFragment :
@@ -27,7 +28,9 @@ class VanNienFragment :
             //do nothing
         }
         viewBD.viewVanKhan.click {
-            //do nothing
+            val intent = Intent()
+            intent.setClass(mainActivity!!, VanKhanActivity::class.java)
+            startActivity(intent)
         }
         viewBD.viewXinQue.click {
             val intent = Intent()

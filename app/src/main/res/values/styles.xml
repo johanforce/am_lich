@@ -209,7 +209,7 @@
         <item name="colorAccent">@color/pri_1</item>
         <item name="android:buttonBarPositiveButtonStyle">@style/ButtonTextPositive</item>
         <item name="android:buttonBarNegativeButtonStyle">@style/ButtonTextNegative</item>
-        <item name="android:backgroundTintMode">@color/white</item>
+        <item name="android:backgroundTintMode">@color/bg_01</item>
     </style>
 
     <style name="ButtonTextNegative" parent="Widget.AppCompat.Button">

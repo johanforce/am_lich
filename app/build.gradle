@@ -57,6 +57,7 @@ android {
             buildConfigField "String", "ORIGINAL_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\""
             buildConfigField "String", "TMBD_API_KEY", "\"2cdf3a5c7cf412421485f89ace91e373\""
             resValue "string", "app_name", "Âm Lịch DEV"
+            resValue("string", "PORT_NUMBER", "6677")
         }
 
         staging {
@@ -68,6 +69,7 @@ android {
             buildConfigField "String", "ORIGINAL_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\""
             buildConfigField "String", "TMBD_API_KEY", "\"2cdf3a5c7cf412421485f89ace91e373\""
             resValue "string", "app_name", "Âm Lịch STG"
+            resValue("string", "PORT_NUMBER", "6677")
         }
 
         product {
@@ -79,6 +81,7 @@ android {
             buildConfigField "String", "ORIGINAL_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\""
             buildConfigField "String", "TMBD_API_KEY", "\"2cdf3a5c7cf412421485f89ace91e373\""
             resValue "string", "app_name", "Âm Lịch"
+            resValue("string", "PORT_NUMBER", "6677")
         }
     }
 

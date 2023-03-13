@@ -245,9 +245,9 @@ class DayAmLichView : FrameLayout {
     fun getNoteInDay(notes: List<NoteModel>?) {
         binding?.llNote?.isVisible = notes?.isNotEmpty() == true
         var textNote = ""
-        notes?.mapNotNull {
-            val text = it.title + ": " + it.des
-            textNote = textNote + text + "\n"
+        notes?.mapIndexedNotNull { index, data ->
+            val text = data.title + ": " + data.des
+            textNote = if (notes.size - 1 == index) textNote + text else textNote + text + "\n"
         }
         binding?.tvNote?.text = textNote
     }

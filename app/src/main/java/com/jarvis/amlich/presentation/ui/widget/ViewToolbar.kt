@@ -49,4 +49,8 @@ class ViewToolbar : FrameLayout {
             onBackPress()
         }
     }
+
+    fun setTitleToolbar(text: String) {
+        binding?.tvTitle?.text = text
+    }
 }

@@ -132,10 +132,12 @@ class CalendarFragment :
 
                 when (day.date) {
                     today -> {
-                        textView.setTextColorRes(R.color.pri_4)
+                        textView.setTextColorRes(R.color.black)
+                        exLunarDay.setTextColorRes(R.color.black)
                         bgDay.setBackgroundResource(R.drawable.bg_boder_pri_2)
                     }
                     selectedDate -> {
+                        exLunarDay.setTextColorRes(R.color.ink_4)
                         bgDay.setBackgroundResource(R.drawable.bg_boder_pri_3)
                     }
                     else -> {

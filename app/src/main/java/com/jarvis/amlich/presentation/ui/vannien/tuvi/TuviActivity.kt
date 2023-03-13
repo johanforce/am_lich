@@ -139,8 +139,7 @@ class TuViActivity : BaseActivity<ActivityTiviBinding>(ActivityTiviBinding::infl
 
     private fun handleTimePicker() {
         val timePickerDialog = TimePickerDialog(
-            this,
-            R.style.MyDatePickerDialogTheme, { _, hour, minute ->
+            this, { _, hour, minute ->
                 toDay.set(Calendar.HOUR_OF_DAY, hour)
                 toDay.set(Calendar.MINUTE, minute)
 
@@ -169,7 +168,6 @@ class TuViActivity : BaseActivity<ActivityTiviBinding>(ActivityTiviBinding::infl
     private fun handleDatePicker() {
         val timePickerDialog = DatePickerDialog(
             this,
-            R.style.MyDatePickerDialogTheme,
             { _, year, month, dayOfMonth ->
                 toDay.set(Calendar.YEAR, year)
                 toDay.set(Calendar.MONTH, month)

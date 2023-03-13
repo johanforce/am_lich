@@ -7,7 +7,7 @@
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
@@ -49,6 +49,14 @@
             android:exported="true" />
         <activity
             android:name=".presentation.ui.vannien.que.QueActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".presentation.ui.vannien.vankhan.VanKhanActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".presentation.ui.vannien.vankhan.detail.DetailVanKhanActivity"
             android:exported="true" />
 
         <service

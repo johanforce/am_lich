@@ -5,4 +5,5 @@ object Constant {
     val KEY_QUE = 1
     val DETAIL = "DETAIL"
     val TIME_NOTE = "TIME_NOTE"
+    val DATA_VAN_KHAN = "DATA_VAN_KHAN"
 }
