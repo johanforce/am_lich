@@ -8,6 +8,7 @@ import com.jarvis.amlich.presentation.ui.calendar.notify.NoteViewModel
 import com.jarvis.amlich.presentation.ui.vannien.VanNienViewModel
 import com.jarvis.amlich.presentation.ui.vannien.vankhan.VanKhanViewModel
 import com.jarvis.amlich.presentation.ui.vannien.vankhan.detail.DetailVanKhanViewModel
+import com.jarvis.amlich.presentation.ui.vannien.xongdat.XongDatViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -20,4 +21,5 @@ val viewModelModule = module {
     viewModel { VanNienViewModel() }
     viewModel { DetailVanKhanViewModel() }
     viewModel { VanKhanViewModel() }
+    viewModel { XongDatViewModel() }
 }

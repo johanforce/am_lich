@@ -77,7 +77,7 @@ enum class HanhEnum(var valueStr: String, val value: Int, val cucName: String, v
     MOC("Mộc", 0, "Mộc Tam Cục", 3),
     KIM("Kim", 1, "Kim Tứ Cục", 4),
     THUY("Thủy", 2, "Thủy Nhị Cục", 2),
-    HOA("Hoả", 3, "Hỏa Lục Cục", 6),
+    HOA("Hỏa", 3, "Hỏa Lục Cục", 6),
     THO("Thổ", 4, "Thổ Ngũ Cục", 5)
 }
 

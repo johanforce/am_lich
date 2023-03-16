@@ -59,6 +59,10 @@
             android:name=".presentation.ui.vannien.vankhan.detail.DetailVanKhanActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".presentation.ui.vannien.xongdat.XongDatActivity"
+            android:exported="true" />
+
         <service
             android:name=".common.firebase.MessagingService"
             android:exported="false">

@@ -8,6 +8,7 @@ import com.jarvis.amlich.presentation.ui.main.MainActivity
 import com.jarvis.amlich.presentation.ui.vannien.que.QueActivity
 import com.jarvis.amlich.presentation.ui.vannien.tuvi.TuViActivity
 import com.jarvis.amlich.presentation.ui.vannien.vankhan.VanKhanActivity
+import com.jarvis.amlich.presentation.ui.vannien.xongdat.XongDatActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VanNienFragment :
@@ -38,7 +39,9 @@ class VanNienFragment :
             startActivity(intent)
         }
         viewBD.viewXongDat.click {
-            //do nothing
+            val intent = Intent()
+            intent.setClass(mainActivity!!, XongDatActivity::class.java)
+            startActivity(intent)
         }
         viewBD.viewTinhTuoi.click {
             //do nothing

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.jarvis.amlich.presentation.ui.widget.ViewToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:toolbarTitle="@string/tv_xong_dat" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleDate"
+                style="@style/T14H20M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/px16"
+                android:layout_marginTop="@dimen/px16"
+                android:layout_marginEnd="@dimen/px16"
+                android:text="@string/tv_birthday_gia_chu"
+                android:textColor="@color/ink_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/clDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/px32"
+                android:layout_marginTop="@dimen/px16"
+                android:background="@drawable/bg_boder_pri_3"
+                android:gravity="center"
+                android:paddingVertical="@dimen/px8"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleDate">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDay"
+                    style="@style/T12H18R"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_title_day"
+                    android:textColor="@color/ink_5" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDataDay"
+                    style="@style/T16H20M"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/px4"
+                    android:textColor="@color/ink_5"
+                    tools:text="16" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMonth"
+                    style="@style/T12H18R"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/px16"
+                    android:text="@string/tv_title_month"
+                    android:textColor="@color/ink_5" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDataMonth"
+                    style="@style/T16H20M"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/px4"
+                    android:textColor="@color/ink_5"
+                    tools:text="12" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvYear"
+                    style="@style/T12H18R"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/px16"
+                    android:text="@string/tv_title_year"
+                    android:textColor="@color/ink_5" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDataYear"
+                    style="@style/T16H20M"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/px4"
+                    android:textColor="@color/ink_5"
+                    tools:text="2033" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitleTime"
+                style="@style/T14H20M"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/px16"
+                android:layout_marginTop="@dimen/px16"
+                android:layout_marginEnd="@dimen/px16"
+                android:text="@string/tv_year_xong_dat"
+                android:textColor="@color/ink_5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clDate" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/clTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/px32"
+                android:layout_marginTop="@dimen/px16"
+                android:background="@drawable/bg_boder_pri_3"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/px16"
+                android:paddingVertical="@dimen/px8"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitleTime">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDot"
+                    style="@style/T14H20M"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/px4"
+                    android:text="@string/tv_title_year"
+                    android:textColor="@color/ink_5" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvYearXongDat"
+                    style="@style/T16H20M"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/px4"
+                    android:textColor="@color/ink_5"
+                    tools:text="2003" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btXongDat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/px16"
+                android:layout_marginTop="@dimen/px16"
+                android:background="@drawable/bg_boder_pri_2"
+                android:text="@string/tv_xem_tu_vi"
+                android:textColor="@color/bg_01"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clTime" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerQue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btXongDat"
+                app:spanCount="3"
+                tools:listitem="@layout/item_que" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
