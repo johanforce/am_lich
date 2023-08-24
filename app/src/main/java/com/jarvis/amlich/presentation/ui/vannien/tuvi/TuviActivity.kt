@@ -6,6 +6,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.DialogInterface
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.jarvis.amlich.R
 import com.jarvis.amlich.base.BaseActivity
 import com.jarvis.amlich.base.recyclerview.SimpleBDAdapter
@@ -16,6 +17,7 @@ import com.jarvis.amlich.common.extension.click
 import com.jarvis.amlich.databinding.ActivityTiviBinding
 import com.jarvis.amlich.databinding.ItemQueBinding
 import com.jarvis.amlich.domain.model.TuViModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -24,7 +26,6 @@ class TuViActivity : BaseActivity<ActivityTiviBinding>(ActivityTiviBinding::infl
 
     private val toDay = Calendar.getInstance()
     private var typeGender = GenderEnum.NU.value
-    private var typeCung = 0
 
     private val listCung = listOf(
         CungEnum.MENH,
@@ -48,7 +49,6 @@ class TuViActivity : BaseActivity<ActivityTiviBinding>(ActivityTiviBinding::infl
         viewBD.tvDataDay.text = toDay.get(Calendar.DAY_OF_MONTH).toString()
         viewBD.tvHour.text = toDay.get(Calendar.HOUR_OF_DAY).toString()
         viewBD.tvMinute.text = toDay.get(Calendar.MINUTE).toString()
-        viewBD.tvTuVI.text = listCung[0].nameGender
         viewBD.tvSex.text = GenderEnum.NU.nameGender
         viewBD.clDate.click {
             handleDatePicker()
@@ -59,49 +59,59 @@ class TuViActivity : BaseActivity<ActivityTiviBinding>(ActivityTiviBinding::infl
         viewBD.clSex.click {
             handerGender()
         }
-        viewBD.clTuVI.click {
-            handeCung()
-        }
         viewBD.btTuvi.click {
-            getDataCung()
+            handleData()
         }
         viewBD.recyclerQue.adapter = listTuViAdapter
     }
 
     override fun initData() {
-
     }
 
-    private fun getDataCung() {
-        val dataRequest = viewModel.getThongTinTUVi(toDay.time)
-        val dataCung = LaSoTuViHelper.getDataCung(
-            dataRequest.chiGioSinh,
-            dataRequest.ngaySinhLunar,
-            dataRequest.thangSinhLunar,
-            dataRequest.canNamSinh,
-            dataRequest.chiGioSinh
-        )
-        val cung = dataCung.first { it.tenCung == listCung[typeCung].nameGender }
-        val listRequest = LaSoTuViHelper.getGiaiDoanTuVi(cung)
-        val results = mutableListOf<TuViModel>()
-        viewModel.listTuVI.value?.map { kq ->
-            listRequest.map { request ->
-                if (
-                    (
-                            kq.anChinhTinh == request.anChinhTinh ||
-                                    (kq.anChinhTinh.isNullOrEmpty() && request.anChinhTinh.isEmpty())
-                            ) &&
-                    (
-                            kq.anPhuTinh == request.anPhuTinh ||
-                                    (kq.anPhuTinh.isNullOrEmpty() && request.anPhuTinh.isEmpty())
-                            ) &&
-                    (
-                            kq.vitri == request.cungMenhCan ||
-                                    (kq.vitri.isNullOrEmpty() && request.cungMenhCan.isEmpty()))
-                ) results.add(kq)
+    private fun handleData() {
+        lifecycleScope.launch {
+            viewModel.listFlowTuvi.collect { listFlowTuvi ->
+                val dataRequest = viewModel.getThongTinTUVi(toDay.time)
+                val dataCung = LaSoTuViHelper.getDataCung(
+                    dataRequest.chiGioSinh,
+                    dataRequest.ngaySinhLunar,
+                    dataRequest.thangSinhLunar,
+                    dataRequest.canNamSinh,
+                    dataRequest.chiGioSinh
+                )
+                val cungMenh = dataCung.first { it.tenCung == listCung[0].nameGender }
+                val cungPhuMau = dataCung.first { it.tenCung == listCung[1].nameGender }
+                val cungQuanLoc = dataCung.first { it.tenCung == listCung[2].nameGender }
+                val cungTatAch = dataCung.first { it.tenCung == listCung[3].nameGender }
+                val listRequest = LaSoTuViHelper.getGiaiDoanTuVi(cungMenh) +
+                        LaSoTuViHelper.getGiaiDoanTuVi(cungPhuMau) +
+                        LaSoTuViHelper.getGiaiDoanTuVi(cungQuanLoc) +
+                        LaSoTuViHelper.getGiaiDoanTuVi(cungTatAch)
+                val results = mutableListOf<TuViModel>()
+                listFlowTuvi.map { kq ->
+                    listRequest.map { request ->
+                        if (
+                            (
+                                    kq.anChinhTinh == request.anChinhTinh ||
+                                            (kq.anChinhTinh.isNullOrEmpty() && request.anChinhTinh.isEmpty())
+                                    ) &&
+                            (
+                                    kq.anPhuTinh == request.anPhuTinh ||
+                                            (kq.anPhuTinh.isNullOrEmpty() && request.anPhuTinh.isEmpty())
+                                    ) &&
+                            (
+                                    kq.vitri == request.cungMenhCan ||
+                                            (kq.vitri.isNullOrEmpty() && request.cungMenhCan.isEmpty()))
+                        ) results.add(kq)
+                    }
+                }
+                listTuViAdapter.submitList(listThongTin(smoothData(results)))
             }
         }
-        listTuViAdapter.submitList(listThongTin(results))
+    }
+
+    private fun smoothData(data: MutableList<TuViModel>): MutableList<TuViModel> {
+        return data.filter { it.luanGiai != null }.distinctBy { it.id }.toMutableList()
     }
 
     private fun listThongTin(data: List<TuViModel>): List<String> {
@@ -118,6 +128,7 @@ class TuViActivity : BaseActivity<ActivityTiviBinding>(ActivityTiviBinding::infl
                             it.luanGiai
                         )
                     )
+
                 !it.anChinhTinh.isNullOrEmpty() && !it.anPhuTinh.isNullOrEmpty() ->
                     list.add(
                         getString(
@@ -127,10 +138,13 @@ class TuViActivity : BaseActivity<ActivityTiviBinding>(ActivityTiviBinding::infl
                             it.luanGiai
                         )
                     )
+
                 !it.anChinhTinh.isNullOrEmpty() ->
                     list.add(getString(R.string.don_thu_mot_sao, it.anChinhTinh, it.luanGiai))
+
                 !it.anPhuTinh.isNullOrEmpty() ->
                     list.add(getString(R.string.don_thu_mot_sao, it.anPhuTinh, it.luanGiai))
+
                 else -> list.add(it.luanGiai ?: "")
             }
         }
@@ -206,23 +220,6 @@ class TuViActivity : BaseActivity<ActivityTiviBinding>(ActivityTiviBinding::infl
 
                 viewBD.tvSex.text =
                     if (typeGender == GenderEnum.NAM.value) GenderEnum.NAM.nameGender else GenderEnum.NU.nameGender
-            }
-            .setPositiveButton(getString(R.string.ok), null)
-            .setNegativeButton(getString(R.string.cancel), null)
-            .show()
-    }
-
-    private fun handeCung() {
-        val listGender = listCung.map { it.nameGender }.toTypedArray()
-        AlertDialog.Builder(this)
-            .setTitle(getString(R.string.tv_title_tu_vi))
-            .setSingleChoiceItems(
-                listGender, typeGender
-            ) { _, selectedIndex ->
-                typeCung = selectedIndex
-                viewBD.tvTuVI.text = listGender[selectedIndex]
-
-                viewModel.getTuVITheoCung(listGender[selectedIndex])
             }
             .setPositiveButton(getString(R.string.ok), null)
             .setNegativeButton(getString(R.string.cancel), null)

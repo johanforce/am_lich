@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_01"
+    android:minHeight="@dimen/px200">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        style="@style/T16H24B"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/px24"
+        android:layout_marginTop="@dimen/px12"
+        android:gravity="center"
+        android:text="@string/note"
+        android:textColor="@color/ink_5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewLine"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px0.5"
+        android:layout_marginHorizontal="@dimen/px24"
+        android:layout_marginTop="@dimen/px12"
+        android:background="@color/ink_2"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvDes"
+        style="@style/T14H20M"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/px24"
+        android:layout_marginTop="@dimen/px12"
+        android:text="@string/note_xong_dat"
+        android:textColor="@color/ink_5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewLine" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btCancel"
+        style="@style/T16H24B"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/px24"
+        android:layout_marginTop="@dimen/px12"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/px12"
+        android:paddingVertical="@dimen/px8"
+        android:text="@string/cancel"
+        android:textColor="@color/pri_1"
+        android:layout_marginBottom="@dimen/px12"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDes"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

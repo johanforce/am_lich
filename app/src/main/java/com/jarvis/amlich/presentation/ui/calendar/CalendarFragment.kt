@@ -92,13 +92,16 @@ class CalendarFragment :
                         selectedDate = day.date
                         viewBD.cvMonth.notifyDateChanged(day.date)
                         oldDate?.let { viewBD.cvMonth.notifyDateChanged(oldDate) }
-
                     }
                     viewBD.cvMonth.notifyDayChanged(day)
                     viewBD.viewAmLich.initData(selectedDate ?: LocalDate.now())
                     viewModel.getNoteInDay(day.date.convertDate())
                     viewBD.layoutTitle.tvActivities.text =
                         viewModel.getTetAmLichName(selectedDate ?: LocalDate.now())
+                    if (viewBD.layoutTitle.tvActivities.text.isNullOrEmpty()) {
+                        viewBD.layoutTitle.tvActivities.text =
+                            viewModel.getTetDuongLichName(selectedDate ?: LocalDate.now())
+                    }
                 }
             }
         }
@@ -136,28 +139,34 @@ class CalendarFragment :
                         exLunarDay.setTextColorRes(R.color.black)
                         bgDay.setBackgroundResource(R.drawable.bg_boder_pri_2)
                     }
+
                     selectedDate -> {
                         exLunarDay.setTextColorRes(R.color.ink_4)
                         bgDay.setBackgroundResource(R.drawable.bg_boder_pri_3)
                     }
+
                     else -> {
                         bgDay.setBackgroundResource(R.color.transparent)
                         textView.background = null
                     }
                 }
-                if (viewModel.isTetAmLich(dayData)) exLunarDay.setTextColorRes(R.color.bitter_sweat)
+                // if (viewModel.isTetAmLich(dayData)) exLunarDay.setTextColorRes(R.color.bitter_sweat)
+                // if (viewModel.isTetDuongLich(dayData)) textView.setTextColorRes(R.color.bitter_sweat)
                 if (viewModel.isSunDayOrSaturday(dayData)) textView.setTextColorRes(R.color.bitter_sweat)
 
                 when {
                     viewModel.statusDay(dayData) == StatusDayEnum.VERY_GOOD.value -> {
                         dot.setImageResource(R.drawable.bg_thanh_long_hoang_dao)
                     }
+
                     viewModel.statusDay(dayData) == StatusDayEnum.GOOD.value -> {
                         dot.setImageResource(R.drawable.bg_hoang_dao)
                     }
+
                     viewModel.statusDay(dayData) == StatusDayEnum.BAD.value -> {
                         dot.setImageResource(R.drawable.bg_hac_dao)
                     }
+
                     else -> {
                         dot.isVisible = false
                     }
@@ -183,6 +192,10 @@ class CalendarFragment :
             viewBD.viewAmLich.initData(selectedDate ?: LocalDate.now())
             viewBD.layoutTitle.tvActivities.text =
                 viewModel.getTetAmLichName(selectedDate ?: LocalDate.now())
+            if (viewBD.layoutTitle.tvActivities.text.isNullOrEmpty()) {
+                viewBD.layoutTitle.tvActivities.text =
+                    viewModel.getTetDuongLichName(selectedDate ?: LocalDate.now())
+            }
         }
 
         viewBD.layoutTitle.viewCalendar.click {

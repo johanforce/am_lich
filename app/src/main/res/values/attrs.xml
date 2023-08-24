@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="JxToolbar">
         <attr name="toolbarTitle" format="string" />
+        <attr name="toolbarIconEnd" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="ViewDanhMucVanNien">

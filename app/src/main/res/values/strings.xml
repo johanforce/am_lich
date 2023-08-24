@@ -171,8 +171,10 @@
     <string name="tv_title_time">Nhập giờ sinh:</string>
     <string name="tv_note_time">Hẹn giờ lời nhắc:</string>
     <string name="tv_xem_tu_vi">Xem Tử Vi</string>
+    <string name="tv_xem_ket_qua">Xem Kết Quả</string>
     <string name="tv_title_sex">Giới Tính:</string>
     <string name="title_name">Chọn Giới Tính:</string>
+    <string name="title_year">Chọn Năm:</string>
     <string name="don_thu_mot_sao">-Sao %s đơn thủ: %s</string>
     <string name="dong_cung_sao">-Sao %s cùng với %s đồng cung: %s</string>
     <string name="dong_cung_tai_sao">-Sao %s cùng với %s đồng cung tại %s: %s</string>
@@ -194,4 +196,6 @@
     <string name="tv_van_khan">Văn Khấn</string>
     <string name="tv_note_title">Ghi chú:</string>
     <string name="search_hint">Tìm kiếm...</string>
+    <string name="note">Chú thích</string>
+    <string name="note_xong_dat">- Để tính tuổi hợp với gia chủ ta dựa vào các yếu tố tương quan giữa 3 thành phần gồm tuổi gia chủ, tuổi người xông và can chi năm âm lịch\n\n- Điểm được tính bằng hệ số 12, tuổi có điểm càng cao thì sẽ càng hợp để xông đất nhà gia chủ</string>
 </resources>

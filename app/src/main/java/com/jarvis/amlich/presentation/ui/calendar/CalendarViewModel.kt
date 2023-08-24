@@ -41,6 +41,16 @@ open class CalendarViewModel : BaseViewModel() {
         return TetHelper.isNgayLeAmLich(getStringLunarDay(dayData))
     }
 
+    fun getTetDuongLichName(dayData: LocalDate): String {
+        val day = "${dayData.dayOfMonth}/${dayData.monthValue}"
+        return TetHelper.getTetDuongLich(day)
+    }
+
+    fun isTetDuongLich(dayData: LocalDate): Boolean {
+        val day = "${dayData.dayOfMonth}/${dayData.monthValue}"
+        return TetHelper.isNgayLeDuongLich(day)
+    }
+
     fun isSunDayOrSaturday(dayData: LocalDate): Boolean {
         return when (dayData.dayOfWeek.value) {
             DayOfWeek.SUNDAY.value, DayOfWeek.SATURDAY.value -> true

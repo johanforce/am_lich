@@ -4,6 +4,7 @@ import androidx.room.*
 import com.jarvis.amlich.common.core.tuvi.GiaiDoanTuVi
 import com.jarvis.amlich.data.entity.*
 import com.jarvis.amlich.domain.model.TuViModel
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface QueDao {
@@ -52,6 +53,9 @@ interface QueDao {
 
     @Query("SELECT * FROM tu_vi WHERE cung = :cung")
     suspend fun getGiaiDoanTuViTheoCung(cung: String): List<TuViEntity>
+
+    @Query("SELECT * FROM tu_vi")
+    fun getTuVi(): Flow<List<TuViEntity>>
 
     @Query("SELECT * FROM note WHERE date_time >= :startDate AND date_time <= :endDate")
     suspend fun getNoteInTime(startDate: Long, endDate: Long): List<NoteEntity>

@@ -40,13 +40,26 @@ class ViewToolbar : FrameLayout {
                 context.obtainStyledAttributes(attrs, R.styleable.JxToolbar)
             val toolbarTitle =
                 attributeArray.getString(R.styleable.JxToolbar_toolbarTitle)
+            val iconEnd =
+                attributeArray.getResourceId(R.styleable.JxToolbar_toolbarIconEnd, 0)
+            attributeArray.recycle()
             binding?.tvTitle?.text = toolbarTitle
+            if (iconEnd != 0) {
+                binding?.ivEnd?.setImageResource(iconEnd)
+                binding?.ivEnd?.visibility = VISIBLE
+            }
         }
     }
 
     fun backToolbar(onBackPress: () -> Unit = {}) {
         binding?.ivBack?.click {
             onBackPress()
+        }
+    }
+
+    fun clickEndIcon(onClick: () -> Unit = {}) {
+        binding?.ivEnd?.click {
+            onClick()
         }
     }
 

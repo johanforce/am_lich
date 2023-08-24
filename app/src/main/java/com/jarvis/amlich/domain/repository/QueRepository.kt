@@ -1,6 +1,7 @@
 package com.jarvis.amlich.domain.repository
 
 import com.jarvis.amlich.domain.model.*
+import kotlinx.coroutines.flow.Flow
 
 interface QueRepository {
 
@@ -32,6 +33,7 @@ interface QueRepository {
 
     suspend fun getVanKhanId(idQue: Int): VanKhanModel
     suspend fun getGiaiDoanTuViTheoCung(cung: String): List<TuViModel>
+    fun getTuVi(): Flow<List<TuViModel>>
     suspend fun insertNote(cung: NoteModel)
     suspend fun getNoteInDay(startDate: Long, endDate: Long): List<NoteModel>
 }

@@ -3,6 +3,7 @@ package com.jarvis.amlich.presentation.ui.vannien.xongdat
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.DialogInterface
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import com.jarvis.amlich.R
 import com.jarvis.amlich.base.BaseActivity
@@ -10,7 +11,9 @@ import com.jarvis.amlich.base.observe
 import com.jarvis.amlich.base.recyclerview.SimpleBDAdapter
 import com.jarvis.amlich.common.extension.click
 import com.jarvis.amlich.databinding.ActivityXongdatBinding
+import com.jarvis.amlich.databinding.DialogQuestionBinding
 import com.jarvis.amlich.databinding.ItemQueBinding
+import com.jarvis.amlich.presentation.ui.widget.DialogYearPicker
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
@@ -31,6 +34,9 @@ class XongDatActivity : BaseActivity<ActivityXongdatBinding>(ActivityXongdatBind
 
     override fun setupViews() {
         viewBD.toolbar.backToolbar { finish() }
+        viewBD.toolbar.clickEndIcon {
+            showNoteQuestion()
+        }
 
         viewBD.tvDataYear.text = chooseBirthDayGiaCHu.get(Calendar.YEAR).toString()
         viewBD.tvDataMonth.text = chooseBirthDayGiaCHu.get(Calendar.MONTH).toString()
@@ -48,8 +54,16 @@ class XongDatActivity : BaseActivity<ActivityXongdatBinding>(ActivityXongdatBind
         viewBD.recyclerQue.adapter = listTuViAdapter
     }
 
-    override fun initData() {
+    private fun showNoteQuestion() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_question, null)
+        val dialogBinding = DialogQuestionBinding.bind(dialogView)
+        val alertDialog = AlertDialog.Builder(this).create()
+        dialogBinding.btCancel.click { alertDialog.dismiss() }
+        alertDialog.setView(dialogView)
+        alertDialog.show()
+    }
 
+    override fun initData() {
     }
 
     override fun observeData() {
@@ -60,31 +74,14 @@ class XongDatActivity : BaseActivity<ActivityXongdatBinding>(ActivityXongdatBind
     }
 
     private fun handleNamXongDatPicker() {
-        val timePickerDialog = DatePickerDialog(
-            this,
-            { _, year, month, dayOfMonth ->
+        val timePickerDialog = DialogYearPicker(this)
+        timePickerDialog.setListener(object : DialogYearPicker.YearPickerCallback {
+            override fun onYearSelected(year: Int) {
                 chooseTimeXongDat.set(Calendar.YEAR, year)
-                chooseTimeXongDat.set(Calendar.MONTH, month)
-                chooseTimeXongDat.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
                 viewBD.tvYearXongDat.text = chooseTimeXongDat.get(Calendar.YEAR).toString()
-            },
-            chooseTimeXongDat.get(Calendar.YEAR),
-            chooseTimeXongDat.get(Calendar.MONTH),
-            chooseTimeXongDat.get(Calendar.DAY_OF_MONTH)
-        )
-        timePickerDialog.setButton(
-            DialogInterface.BUTTON_POSITIVE,
-            getString(R.string.saveButton),
-            timePickerDialog
-        )
-        timePickerDialog.setButton(
-            DialogInterface.BUTTON_NEGATIVE,
-            getString(R.string.cancelButton),
-            timePickerDialog
-        )
-        timePickerDialog.setCancelable(false)
-        timePickerDialog.show()
+            }
+        })
+        timePickerDialog.show(supportFragmentManager, "year_picker")
     }
 
     @SuppressLint("SetTextI18n")
@@ -117,6 +114,4 @@ class XongDatActivity : BaseActivity<ActivityXongdatBinding>(ActivityXongdatBind
         timePickerDialog.setCancelable(false)
         timePickerDialog.show()
     }
-
-
 }

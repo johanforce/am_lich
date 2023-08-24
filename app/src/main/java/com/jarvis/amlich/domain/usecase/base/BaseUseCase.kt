@@ -25,3 +25,7 @@ abstract class NoParamUseCase<Output> : BaseUseCase<Output, Empty>() {
 
     abstract suspend operator fun invoke(): Output
 }
+
+abstract class NoParamFlowUseCase<Output> : KoinComponent  {
+    abstract operator fun invoke(): Output
+}
