@@ -9,7 +9,7 @@ data class NguoiDiModel(
     var thoNom: String? = null,
     var thoDich: String? = null,
     var banLuan: String? = null,
-): MapAbleToModel<DetailModel> {
+) : MapAbleToModel<DetailModel> {
 
     override fun toModel(): DetailModel {
         return DetailModel(

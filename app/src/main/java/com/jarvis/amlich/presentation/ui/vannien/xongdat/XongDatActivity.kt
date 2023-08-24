@@ -63,9 +63,6 @@ class XongDatActivity : BaseActivity<ActivityXongdatBinding>(ActivityXongdatBind
         alertDialog.show()
     }
 
-    override fun initData() {
-    }
-
     override fun observeData() {
         super.observeData()
         observe(viewModel.listXongDat) {

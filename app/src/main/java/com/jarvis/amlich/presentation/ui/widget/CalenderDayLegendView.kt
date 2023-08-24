@@ -46,5 +46,4 @@ class CalenderDayLegendView : FrameLayout {
     }
 
     private val listWeek = listOf("Hai", "Ba", "Tư", "Năm", "Sáu", "Bảy", "CN")
-
 }

@@ -5,8 +5,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.jarvis.amlich.domain.mapper.MapAbleToModel
 import com.jarvis.amlich.domain.model.TuViModel
-import org.jetbrains.annotations.NotNull
-
 
 @Entity(tableName = "tu_vi")
 data class TuViEntity(

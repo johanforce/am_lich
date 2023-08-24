@@ -7,8 +7,12 @@ import android.widget.FrameLayout
 import androidx.core.view.isVisible
 import com.jarvis.amlich.R
 import com.jarvis.amlich.base.recyclerview.SimpleBDAdapter
-import com.jarvis.amlich.common.core.*
+import com.jarvis.amlich.common.core.HourGoodBadHelper
+import com.jarvis.amlich.common.core.KhongMinhXuatHanh
+import com.jarvis.amlich.common.core.LunarCoreHelper
 import com.jarvis.amlich.common.core.LunarCoreHelper.getUnAccentCanChi
+import com.jarvis.amlich.common.core.SaoXauHelper
+import com.jarvis.amlich.common.core.StatusDayEnum
 import com.jarvis.amlich.databinding.ItemHourStatusBinding
 import com.jarvis.amlich.databinding.ViewEmptyHistoryBinding
 import com.jarvis.amlich.domain.model.NoteModel
@@ -16,7 +20,7 @@ import java.time.DayOfWeek
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
-import java.util.*
+import java.util.Date
 
 class DayAmLichView : FrameLayout {
     private var binding: ViewEmptyHistoryBinding? = null
@@ -69,12 +73,15 @@ class DayAmLichView : FrameLayout {
             statusDay(dayData) == StatusDayEnum.VERY_GOOD.value -> {
                 binding?.ivDotDay?.setImageResource(R.drawable.bg_thanh_long_hoang_dao)
             }
+
             statusDay(dayData) == StatusDayEnum.GOOD.value -> {
                 binding?.ivDotDay?.setImageResource(R.drawable.bg_hoang_dao)
             }
+
             statusDay(dayData) == StatusDayEnum.BAD.value -> {
                 binding?.ivDotDay?.setImageResource(R.drawable.bg_hac_dao)
             }
+
             else -> {
                 binding?.ivDotDay?.isVisible = false
                 binding?.tvDayStatus?.isVisible = false
@@ -147,7 +154,6 @@ class DayAmLichView : FrameLayout {
             dayData.monthValue,
             dayData.year
         ))
-
     }
 
     private fun getChiDay(dayData: LocalDate): String {

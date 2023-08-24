@@ -64,10 +64,6 @@ class TuViActivity : BaseActivity<ActivityTiviBinding>(ActivityTiviBinding::infl
         }
         viewBD.recyclerQue.adapter = listTuViAdapter
     }
-
-    override fun initData() {
-    }
-
     private fun handleData() {
         lifecycleScope.launch {
             viewModel.listFlowTuvi.collect { listFlowTuvi ->

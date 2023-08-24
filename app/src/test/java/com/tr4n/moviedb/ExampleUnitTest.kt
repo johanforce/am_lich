@@ -1,4 +1,4 @@
-package com.jarvis.amlich
+package com.tr4n.moviedb
 
 import org.junit.Test
 

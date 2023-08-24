@@ -1,9 +1,7 @@
 package com.jarvis.amlich.data.local.dao
 
 import androidx.room.*
-import com.jarvis.amlich.common.core.tuvi.GiaiDoanTuVi
 import com.jarvis.amlich.data.entity.*
-import com.jarvis.amlich.domain.model.TuViModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -65,5 +63,4 @@ interface QueDao {
 
     @Delete
     suspend fun deleteNote(note: NoteEntity)
-
 }

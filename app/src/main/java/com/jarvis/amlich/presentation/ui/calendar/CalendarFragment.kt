@@ -42,7 +42,6 @@ class CalendarFragment :
     private var selectedDate: LocalDate? = LocalDate.now()
     private val today = LocalDate.now()
     private val currentMonth = YearMonth.now()
-    private var bindDay = LocalDate.now()
 
     override fun initData() {
         this.diaryActivity = activity as MainActivity

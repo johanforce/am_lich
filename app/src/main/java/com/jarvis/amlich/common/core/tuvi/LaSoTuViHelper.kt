@@ -1,6 +1,10 @@
 package com.jarvis.amlich.common.core.tuvi
 
-import com.jarvis.amlich.common.core.*
+import com.jarvis.amlich.common.core.AmDuongEnum
+import com.jarvis.amlich.common.core.CanEnum
+import com.jarvis.amlich.common.core.ChiEnum
+import com.jarvis.amlich.common.core.HanhEnum
+import com.jarvis.amlich.common.core.LunarCoreHelper
 import com.jarvis.amlich.common.core.LunarCoreHelper.CAN
 import com.jarvis.amlich.common.core.LunarCoreHelper.CHI
 
@@ -866,22 +870,6 @@ object LaSoTuViHelper {
             )
         ),
     )
-
-    private val listThaiTue = listOf(
-        "Thái Tuế",
-        "Thiếu Dương",
-        "Tang Môn",
-        "THiếu Âm",
-        "Quan Phủ",
-        "Tử Phù",
-        "Tuế Phá",
-        "Long Đức",
-        "Bạch Hổ",
-        "Phúc Đức",
-        "Điếu Khách",
-        "Trực Phù"
-    )
-
     private fun getAnSaoTuVi(
         hourLunar: String,
         dayLunar: Int,
@@ -1063,7 +1051,7 @@ object LaSoTuViHelper {
         val result = mutableListOf<GiaiDoanTuVi>()
         listAnChinhTinh.map { anChinhTinh ->
             listAnPhuTinh.map { anPhuTinh ->
-                listViTri.map { it ->
+                listViTri.map {
                     result.add(
                         GiaiDoanTuVi(
                             cungMenhCan = it,
@@ -1078,8 +1066,8 @@ object LaSoTuViHelper {
         return result
     }
 
+    @Suppress("unused")
     private fun getAmDuongDuongSo(isNam: Boolean, canLunar: String): Int {
-        val listDuongCan = setOf("Giáp", "Bính", "Mậu", "Canh", "Nhâm")
         return when {
             canLunar.contains(canLunar) && isNam -> AmDuongEnum.NAM_DUONG.value
             !canLunar.contains(canLunar) && isNam -> AmDuongEnum.NAM_AM.value

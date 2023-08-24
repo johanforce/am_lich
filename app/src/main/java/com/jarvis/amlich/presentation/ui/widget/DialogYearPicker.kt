@@ -1,7 +1,6 @@
 package com.jarvis.amlich.presentation.ui.widget
 
 import android.app.AlertDialog
-import android.app.DatePickerDialog.OnDateSetListener
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
@@ -10,8 +9,7 @@ import android.view.View
 import android.widget.NumberPicker
 import androidx.fragment.app.DialogFragment
 import com.jarvis.amlich.R
-import java.util.*
-
+import java.util.Calendar
 
 class DialogYearPicker(context: Context) : DialogFragment() {
     private var listener: YearPickerCallback? = null
@@ -39,7 +37,7 @@ class DialogYearPicker(context: Context) : DialogFragment() {
 
         return AlertDialog.Builder(context).setTitle(R.string.title_year)
             .setView(dialog)
-            .setPositiveButton( R.string.ok) { _, _ ->
+            .setPositiveButton(R.string.ok) { _, _ ->
                 val selectedYear = yearPicker.value
                 listener?.onYearSelected(selectedYear)
             }

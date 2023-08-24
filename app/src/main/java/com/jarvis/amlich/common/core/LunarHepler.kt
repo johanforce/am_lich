@@ -9,7 +9,6 @@ import kotlin.math.sin
 
 object LunarCoreHelper {
     private const val PI = Math.PI
-    private const val TAG = "LunarCoreHelper"
 
     //Time Giap Ty base
     private const val BASE_TIME = 1672502400000

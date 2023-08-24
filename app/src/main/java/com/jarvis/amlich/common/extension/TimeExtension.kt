@@ -44,7 +44,6 @@ fun Date.endMonth(): Long {
 fun Date.isCheckInDay(list: List<Long>): Boolean {
     val calendar = Calendar.getInstance()
     calendar.time = this
-    val tempCal = Calendar.getInstance()
     list.mapNotNull {
         if (calendar.timeInMillis.isCheckSameDay(it)) return true
     }
